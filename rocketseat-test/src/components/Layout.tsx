@@ -43,7 +43,7 @@ const Header = ({ children }: {children: React.ReactNode}) => {
           </span>
         </div>
       </div>
-      <main className={`${saira} font-saira w-screen h-screen bg-page-background`}>
+      <main className={`${saira} font-saira w-full h-screen bg-page-background px-40`}>
         {children}
       </main>
     </div>

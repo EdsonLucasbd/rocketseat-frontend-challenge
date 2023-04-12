@@ -1,7 +1,9 @@
-import { CategoryNav } from "@/components/CategoryNav";
+import { CategoryNav } from "@/components/CategoryNavbar";
 
 export default function Home() {
-  <div className='flex '>
-    <CategoryNav />
-  </div>
+  return (
+    <div className='flex'>
+      <CategoryNav />
+    </div>
+  )
 }
