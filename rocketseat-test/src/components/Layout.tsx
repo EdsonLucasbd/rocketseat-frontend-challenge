@@ -1,5 +1,5 @@
 import { saira, saira_stencil_one } from '@/utils/fonts';
-import Image from 'next/image';
+import { MagnifyingGlass, ShoppingBagOpen } from '@phosphor-icons/react';
 
 const Header = ({ children }: {children: React.ReactNode}) => {
   return (
@@ -22,20 +22,16 @@ const Header = ({ children }: {children: React.ReactNode}) => {
               Procurando por algo específico?
             </label>
             <button className='absolute top-2 right-3 border-none bg-transparent'>
-              <Image 
-                width={24} 
-                height={24} 
-                src='/icons/search-loupe.svg' 
+              <MagnifyingGlass 
+                className='w-6 h-6 text-texts-text'
                 alt='buscar'
               />
             </button>
           </div>
           <span className='relative inline-flex'>
             <button>
-              <Image 
-                width={24} 
-                height={24} 
-                src='/icons/shopping-bag.svg' 
+              <ShoppingBagOpen 
+                className='w-6 h-6 text-texts-text'
                 alt='buscar'
               />
             </button>

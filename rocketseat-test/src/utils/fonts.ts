@@ -1,16 +1,16 @@
-import { Saira, Saira_Stencil_One } from 'next/font/google'
+import { Saira, Saira_Stencil_One, } from 'next/font/google'
 
 const saira_normal = Saira({ 
+  weight: ['300', '400', '500', '600'],
   subsets: ['latin'], 
   variable: '--font-saira',
-  weight: ['300', '400', '500', '600'],
   display: 'swap'
 })
 
 const saira_stencil = Saira_Stencil_One({
+  weight: '400',
   subsets: ['latin'],
   variable: '--font-saira_stencil',
-  weight: '400',
   display: 'swap'
 })
 
