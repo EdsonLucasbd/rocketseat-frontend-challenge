@@ -4,7 +4,7 @@ import { MagnifyingGlass, ShoppingBagOpen } from '@phosphor-icons/react';
 const Header = ({ children }: {children: React.ReactNode}) => {
   return (
     <div className='flex flex-col'>
-      <div className='flex items-center justify-between w-full max-w-[1440px] h-20 bg-shapes-01 px-40'>
+      <div className='flex items-center justify-between w-full h-20 bg-shapes-01 px-40'>
         <span className={`${saira_stencil_one} font-saira-stencil-one text-texts-text text-[40px]`}>capputeeno</span>
         <div className='flex flex-row gap-6'>
           <div className='relative flex justify-between gap-4'>
@@ -39,7 +39,7 @@ const Header = ({ children }: {children: React.ReactNode}) => {
           </span>
         </div>
       </div>
-      <main className={`${saira} font-saira w-full h-screen bg-page-background px-40`}>
+      <main className={`${saira} font-saira w-screen h-full bg-page-background px-40 -mx-4 pb-[60px]`}>
         {children}
       </main>
     </div>
