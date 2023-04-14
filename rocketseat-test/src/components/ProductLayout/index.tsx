@@ -18,16 +18,22 @@ const ProductSkeletonLoader = () => {
 };
 
 const ProductLayout = ({image, price, title}: ProductProps) => {
+  const productPrice = (price ?? 0) / 100.0
   return (
-    <div className="flex flex-col w-64 h-[378px] bg-white/40 rounded-lg">
+    <div className="flex flex-col w-64 h-[378px]">
       <Image 
         src={image!}
-        className="w-64 h-[300px]"
+        width={256}
+        height={300}
         alt={`${title}`}
+        className="h-[300px] rounded-t-lg"
         aria-hidden
       />
-      <p className={`${saira} font-saira text-texts-text font-light text-base`}>{title}</p>
-      <p className={`${saira} font-saira text-[#09090A] font-semibold text-sm`}>{price}</p>
+      <div className="flex flex-col bg-white/40 h-[78px] py-2 px-3 gap-y-2 rounded-b-lg">
+        <p className={`${saira} font-saira text-texts-text font-light text-base`}>{title}</p>
+        <hr className="bg-shapes-02"/>
+        <p className={`${saira} font-saira text-[#09090A] font-semibold text-sm`}>R$ {productPrice}</p>
+      </div>
     </div>
   );
 }
