@@ -54,6 +54,8 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
   const {query} = context
   const page = Number(query.page || 0) 
   const category = query.category
+  const sortField = query.sortField || ''
+  const sortOrder = query.sortOrder || ''
 
   try {
     const { data } = await client.query<AllProductsQuery>({
@@ -61,7 +63,9 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
       variables: {
         page,
         perPage: 12,
-        filter: {category: category}
+        filter: {category: category},
+        sortField,
+        sortOrder
       }
     });
 

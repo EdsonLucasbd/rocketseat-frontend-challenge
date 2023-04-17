@@ -34,6 +34,7 @@ export default function Home({products}: InferGetServerSidePropsType<typeof getS
             products?.map((product) => (
               <ProductCardWithLoader 
                 key={product?.id}
+                id={product?.id}
                 image={product?.image_url}
                 title={product?.name}
                 price={product?.price_in_cents}
@@ -54,12 +55,18 @@ export default function Home({products}: InferGetServerSidePropsType<typeof getS
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   const {query} = context
   const page = Number(query.page || '') 
+  const sortField = query.sortField || ''
+  const sortOrder = query.sortOrder || ''
+
+  console.log({sortField, sortOrder})
   try {
     const { data } = await client.query<AllProductsQuery>({
       query: GetAllProducts,
       variables: {
         page,
-        perPage: 12
+        perPage: 12,
+        sortField,
+        sortOrder
       }
     });
     

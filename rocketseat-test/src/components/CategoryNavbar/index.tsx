@@ -3,17 +3,45 @@ import { Menu, Transition } from '@headlessui/react';
 import { CaretDown } from '@phosphor-icons/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import queryString from 'query-string';
 import { Fragment } from 'react';
+
+interface ISortLink {
+  sortField: string
+  sortOrder: string
+  title: string
+  className: string
+}
+
+const SortLink = ({ sortField, sortOrder, title, className }: ISortLink) => {
+  const router = useRouter();
+  const currentUrl = router.asPath.split('?')[0]
+  const queryParams = queryString.parse(router.asPath.split('?')[1] || '')
+  const newQueryParams = {
+    ...queryParams,
+    sortField,
+    sortOrder,
+  };
+  const newQueryString = queryString.stringify(newQueryParams)
+  const newUrl = `${currentUrl}?${newQueryString}`
+
+  return (
+    <Link href={newUrl} className={`${className}`}>
+      {title}
+    </Link>
+  );
+}
 
 export const CategoryNav = () => {
   const router = useRouter()
   const currentPage = router.asPath
+  const {category = ''} = router.query || {}
 
   const links = [
-    { href: '/news', label: 'Novidades' },
-    { href: '/price-down', label: 'Preço: Maior - menor' },
-    { href: '/price-up', label: 'Preço: Menor - maior' },
-    { href: '/best-sellers', label: 'Mais vendidos' },
+    { href: currentPage, sortField: 'created_at', sortOrder: 'desc', label: 'Novidades' },
+    { href: currentPage, sortField: 'price_in_cents', sortOrder: 'desc', label: 'Preço: Maior - menor' },
+    { href: currentPage, sortField: 'price_in_cents', sortOrder: 'asc', label: 'Preço: Menor - maior' },
+    { href: currentPage, sortField: 'sales', sortOrder: 'desc', label: 'Mais vendidos' },
   ]
 
   return (
@@ -47,16 +75,16 @@ export const CategoryNav = () => {
               <div className="px-4 py-3 ">
                 {links.map((link) => (
                   /* Use the `active` state to conditionally style the active item. */
-                  <Menu.Item key={link.href} as={Fragment}>
+                  <Menu.Item key={link.label} as={Fragment}>
                     {({ active }) => (
-                      <a
-                        href={link.href}
+                      <SortLink
+                        sortField={link.sortField}
+                        sortOrder={link.sortOrder}
+                        title={link.label}
                         className={`${
                           active ? 'bg-texts-title text-white' : 'bg-white text-texts-text'
                         } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-                      >
-                        {link.label}
-                      </a>
+                      />
                     )}
                   </Menu.Item>
                 ))}

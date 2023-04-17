@@ -1,10 +1,12 @@
 import { saira } from "@/utils/fonts";
 import Image from "next/image";
+import Link from "next/link";
 
 interface ProductProps {
   image?: string
   title?: string
   price?: number
+  id?: string
 }
 
 const ProductSkeletonLoader = () => {
@@ -17,10 +19,13 @@ const ProductSkeletonLoader = () => {
   );
 };
 
-const ProductLayout = ({image, price, title}: ProductProps) => {
+const ProductLayout = ({image, price, title, id}: ProductProps) => {
   const productPrice = (price ?? 0) / 100.0
   return (
-    <div className="flex flex-col w-64 h-[378px]">
+    <Link 
+      className="flex flex-col w-64 h-[378px]"
+      href={`/product/${id}`}
+    >
       <Image 
         src={image!}
         width={256}
@@ -34,14 +39,14 @@ const ProductLayout = ({image, price, title}: ProductProps) => {
         <hr className="bg-shapes-02"/>
         <p className={`${saira} font-saira text-[#09090A] font-semibold text-sm`}>R$ {productPrice}</p>
       </div>
-    </div>
+    </Link>
   );
 }
 
 export const ProductCardWithLoader = (props: ProductProps) => {
-  const { image, title, price } = props
+  const { image, title, price, id } = props
 
-  const isLoading = !image || !title || !price;
+  const isLoading = !image || !title || !price || !id;
 
   return isLoading ? <ProductSkeletonLoader /> : <ProductLayout {...props} />;
 }
