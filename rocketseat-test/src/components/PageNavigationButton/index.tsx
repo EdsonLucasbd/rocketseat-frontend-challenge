@@ -9,6 +9,7 @@ interface PageNavigationButtonProps {
 
 export const PageNavigationButton = ({array, currentPage}: PageNavigationButtonProps) => {
   const router = useRouter() 
+  const {category = ''} = router.query || {}
 
   function goToNextPage() {
     let initial_page = router.query.page ?? 0
@@ -22,10 +23,10 @@ export const PageNavigationButton = ({array, currentPage}: PageNavigationButtonP
           array.map((buttonNumber) => (
             <Link 
               key={buttonNumber} 
-              href={`?page=${buttonNumber}`} 
+              href={`${category}?page=${buttonNumber}`} 
               aria-label={`acessar a página ${buttonNumber + 1}`}
               className={`flex items-center justify-center rounded-lg w-8 h-8 
-                ${(currentPage === `/?page=${buttonNumber}`) || (currentPage === '/' && buttonNumber === 0) ? 'bg-background text-others-orange_low ring-1 ring-others-orange_low' : 'bg-[#E9E9F0] text-texts-complement'}
+                ${(currentPage.includes(`?page=${buttonNumber}`)) || (currentPage === `/category/${category}` && buttonNumber === 0) || (currentPage === '/' && buttonNumber === 0) ? 'bg-background text-others-orange_low ring-1 ring-others-orange_low' : 'bg-[#E9E9F0] text-texts-complement'}
                 hover:bg-shapes-02`}
             >
               {buttonNumber + 1}
@@ -36,7 +37,7 @@ export const PageNavigationButton = ({array, currentPage}: PageNavigationButtonP
         <div className="flex flex-row gap-1 ml-1">
           <button 
             aria-label='voltar uma página'
-            className={`${(currentPage !== '/' && currentPage !== '/?page=0') ? 'flex' : 'hidden '} items-center justify-center rounded-lg w-8 h-8 bg-[#E9E9F0] text-texts-complement
+            className={`${(currentPage !== '/' && currentPage !== '/?page=0') && (currentPage !== `/category/${category}` && currentPage !== `/category/${category}?page=0`) ? 'flex' : 'hidden '} items-center justify-center rounded-lg w-8 h-8 bg-[#E9E9F0] text-texts-complement
             hover:bg-shapes-02 `}
             onClick={router.back}
           >

@@ -7,11 +7,10 @@ import { GetAllProducts } from "@/graphql/queries";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
 
-export default function Home({products}: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  // const { loading, error, data } = useQuery<Product[]>(GetAllProducts)
-  const TOTAL_PRODUCTS = 60
+export default function Category({products}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const TOTAL_PRODUCTS = 30
   const fakeProductsArray = Array.from({length: 12}, (_, index) => index + 1)
-  const numberButtonsArray = Array.from({length: TOTAL_PRODUCTS / 12}, (_, index) => index ++)
+  const numberButtonsArray = Array.from({length: Math.ceil(TOTAL_PRODUCTS / 12)}, (_, index) => index ++)
   const router = useRouter()  
   const currentPage = router.asPath
 
@@ -53,16 +52,19 @@ export default function Home({products}: InferGetServerSidePropsType<typeof getS
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   const {query} = context
-  const page = Number(query.page || '') 
+  const page = Number(query.page || 0) 
+  const category = query.category
+
   try {
     const { data } = await client.query<AllProductsQuery>({
       query: GetAllProducts,
       variables: {
         page,
-        perPage: 12
+        perPage: 12,
+        filter: {category: category}
       }
     });
-    
+
     return {
       props: {
         products: data.allProducts,
