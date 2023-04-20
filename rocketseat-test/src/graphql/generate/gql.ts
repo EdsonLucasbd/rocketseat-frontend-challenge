@@ -13,8 +13,8 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-    "\n  query AllProducts {\n    allProducts {\n      id\n      name\n      description\n      image_url\n      category\n      price_in_cents\n      sales\n      created_at\n    }\n  }\n": types.AllProductsDocument,
-    "\n  query Product($id: ID!) {\n    Product(id: $id) {\n      name\n      description\n      image_url\n      category\n      price_in_cents\n      sales\n      created_at\n    }\n  }\n": types.ProductDocument,
+    "\n  query AllProducts($page: Int, $perPage: Int, $sortField: String, $sortOrder: String, $filter: ProductFilter) {\n  allProducts(page: $page, perPage: $perPage, sortField: $sortField, sortOrder: $sortOrder, filter: $filter) {\n      id\n      name\n      description\n      image_url\n      category\n      price_in_cents\n      sales\n      created_at\n    }\n  }\n": types.AllProductsDocument,
+    "\n  query Product($id: ID!) {\n    Product(id: $id) {\n      id\n      name\n      description\n      image_url\n      category\n      price_in_cents\n      sales\n      created_at\n    }\n  }\n": types.ProductDocument,
 };
 
 /**
@@ -34,11 +34,11 @@ export function graphql(source: string): unknown;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  query AllProducts {\n    allProducts {\n      id\n      name\n      description\n      image_url\n      category\n      price_in_cents\n      sales\n      created_at\n    }\n  }\n"): (typeof documents)["\n  query AllProducts {\n    allProducts {\n      id\n      name\n      description\n      image_url\n      category\n      price_in_cents\n      sales\n      created_at\n    }\n  }\n"];
+export function graphql(source: "\n  query AllProducts($page: Int, $perPage: Int, $sortField: String, $sortOrder: String, $filter: ProductFilter) {\n  allProducts(page: $page, perPage: $perPage, sortField: $sortField, sortOrder: $sortOrder, filter: $filter) {\n      id\n      name\n      description\n      image_url\n      category\n      price_in_cents\n      sales\n      created_at\n    }\n  }\n"): (typeof documents)["\n  query AllProducts($page: Int, $perPage: Int, $sortField: String, $sortOrder: String, $filter: ProductFilter) {\n  allProducts(page: $page, perPage: $perPage, sortField: $sortField, sortOrder: $sortOrder, filter: $filter) {\n      id\n      name\n      description\n      image_url\n      category\n      price_in_cents\n      sales\n      created_at\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  query Product($id: ID!) {\n    Product(id: $id) {\n      name\n      description\n      image_url\n      category\n      price_in_cents\n      sales\n      created_at\n    }\n  }\n"): (typeof documents)["\n  query Product($id: ID!) {\n    Product(id: $id) {\n      name\n      description\n      image_url\n      category\n      price_in_cents\n      sales\n      created_at\n    }\n  }\n"];
+export function graphql(source: "\n  query Product($id: ID!) {\n    Product(id: $id) {\n      id\n      name\n      description\n      image_url\n      category\n      price_in_cents\n      sales\n      created_at\n    }\n  }\n"): (typeof documents)["\n  query Product($id: ID!) {\n    Product(id: $id) {\n      id\n      name\n      description\n      image_url\n      category\n      price_in_cents\n      sales\n      created_at\n    }\n  }\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

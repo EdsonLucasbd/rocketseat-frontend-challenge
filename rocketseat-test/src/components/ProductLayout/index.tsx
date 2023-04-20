@@ -9,6 +9,10 @@ interface ProductProps {
   id?: string
 }
 
+export const convertProductPrice = (price: number | undefined) => {
+  return ((price ?? 0) / 100.00 ).toFixed(2)
+}
+
 const ProductSkeletonLoader = () => {
   return (
     <div className="flex flex-col w-64 h-[378px] bg-white/40 rounded-lg animate-pulse">
@@ -20,10 +24,11 @@ const ProductSkeletonLoader = () => {
 };
 
 const ProductLayout = ({image, price, title, id}: ProductProps) => {
-  const productPrice = (price ?? 0) / 100.0
+  const productPrice = convertProductPrice(price)
   return (
     <Link 
-      className="flex flex-col w-64 h-[378px]"
+      className="flex flex-col w-64 h-[378px] hover:shadow-lg hover:scale-105 rounded-lg 
+        duration-200 transition-all ease-in-out"
       href={`/product/${id}`}
     >
       <Image 

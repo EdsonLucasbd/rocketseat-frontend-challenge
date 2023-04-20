@@ -1,10 +1,26 @@
 import { saira, saira_stencil_one } from '@/utils/fonts';
 import { MagnifyingGlass, ShoppingBagOpen } from '@phosphor-icons/react';
+import localforage from 'localforage';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
 const Header = ({ children }: {children: React.ReactNode}) => {
+  const [itemsInShoppingCart, setItemsInShoppingCart] = useState(0)
+  const router = useRouter()
+
+  useEffect(() => {
+    localforage.getItem<object[]>('shoppingCart').then((items) => {
+      if(items) {
+          setItemsInShoppingCart(items.length)
+      }
+    }).catch((error) => {
+      console.error('Erro ao buscar itens do carrinho:', error)
+    })
+  }, [])
+
   return (
     <div className='flex flex-col'>
-      <div className='flex items-center justify-between w-full h-20 bg-shapes-01 px-40'>
+      <header className='flex items-center justify-between w-full h-20 bg-shapes-01 px-40'>
         <span className={`${saira_stencil_one} font-saira-stencil-one text-texts-text text-[40px]`}>capputeeno</span>
         <div className='flex flex-row gap-6'>
           <div className='relative flex justify-between gap-4'>
@@ -33,13 +49,14 @@ const Header = ({ children }: {children: React.ReactNode}) => {
               <ShoppingBagOpen 
                 className='w-6 h-6 text-texts-text'
                 alt='buscar'
+                onClick={() => router.push('/shoppingCart')}
               />
             </button>
-            <span className={`absolute ${saira} font-saira w-[17px] h-[17px] -bottom-2 right-0 inline-flex items-center justify-center p-[5px] text-[10px] font-medium leading-none text-shapes-01 transform translate-x-1/2 -translate-y-1/2 bg-others-delete rounded-full`}>0</span>
+            <span className={`absolute ${saira} font-saira w-[17px] h-[17px] -bottom-2 right-0 inline-flex items-center justify-center p-[5px] text-[10px] font-medium leading-none text-shapes-01 transform translate-x-1/2 -translate-y-1/2 bg-others-delete rounded-full`}>{itemsInShoppingCart}</span>
           </span>
         </div>
-      </div>
-      <main className={`${saira} font-saira w-screen h-full bg-page-background px-40 -mx-4 pb-[60px]`}>
+      </header>
+      <main className={`${saira} font-saira w-screen h-full bg-page-background px-40 pb-[60px]`}>
         {children}
       </main>
     </div>

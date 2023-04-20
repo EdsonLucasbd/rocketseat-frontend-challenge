@@ -58,7 +58,6 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
   const sortField = query.sortField || ''
   const sortOrder = query.sortOrder || ''
 
-  console.log({sortField, sortOrder})
   try {
     const { data } = await client.query<AllProductsQuery>({
       query: GetAllProducts,
