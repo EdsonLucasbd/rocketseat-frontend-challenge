@@ -10,7 +10,7 @@ interface ProductProps {
 }
 
 export const convertProductPrice = (price: number | undefined) => {
-  return ((price ?? 0) / 100.00 ).toFixed(2)
+  return ((price ?? 0) / 100.00).toFixed(2)
 }
 
 const ProductSkeletonLoader = () => {
@@ -23,15 +23,15 @@ const ProductSkeletonLoader = () => {
   );
 };
 
-const ProductLayout = ({image, price, title, id}: ProductProps) => {
+const ProductLayout = ({ image, price, title, id }: ProductProps) => {
   const productPrice = convertProductPrice(price)
   return (
-    <Link 
+    <Link
       className="flex flex-col w-64 h-[378px] hover:shadow-lg hover:scale-105 rounded-lg 
         duration-200 transition-all ease-in-out"
       href={`/product/${id}`}
     >
-      <Image 
+      <Image
         src={image!}
         width={256}
         height={300}
@@ -41,7 +41,7 @@ const ProductLayout = ({image, price, title, id}: ProductProps) => {
       />
       <div className="flex flex-col bg-white/40 h-[78px] py-2 px-3 gap-y-2 rounded-b-lg">
         <p className={`${saira} font-saira text-texts-text font-light text-base`}>{title}</p>
-        <hr className="bg-shapes-02"/>
+        <hr className="bg-shapes-02" />
         <p className={`${saira} font-saira text-[#09090A] font-semibold text-sm`}>R$ {productPrice}</p>
       </div>
     </Link>
@@ -53,5 +53,5 @@ export const ProductCardWithLoader = (props: ProductProps) => {
 
   const isLoading = !image || !title || !price || !id;
 
-  return isLoading ? <ProductSkeletonLoader /> : <ProductLayout {...props} />;
+  return isLoading ? <ProductSkeletonLoader /> : <ProductLayout  {...props} />;
 }
