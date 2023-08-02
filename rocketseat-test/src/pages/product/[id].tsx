@@ -3,56 +3,51 @@ import { client } from "@/graphql/client";
 import { ProductQuery } from "@/graphql/generate/graphql";
 import { GetProduct } from "@/graphql/queries";
 import { ArrowCircleLeft, ShoppingBagOpen } from "@phosphor-icons/react";
-import localforage from "localforage";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useContext } from "react";
+import { CartContext } from "../../../context/CartContext";
 
 export interface IStoredItem {
-  name: string, 
+  name: string,
   id: string,
   description: string
   image_url: string
   price: number
+  quantity: number
 }
 
-export default function Product({product}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Product({ product }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const router = useRouter()
   const translatedCategoryName = product?.category === 't-shirts' ? 'Camiseta' : 'Caneca'
   const price = Number(convertProductPrice(product?.price_in_cents))
 
-  async function setProductInBag({name, id, price, description, image_url}: IStoredItem) {
-    const product = {name, id, price, description, image_url}
-    
-    const storedProducts = await localforage.getItem<object[]>('shoppingCart') || []
+  const { addItemToCart } = useContext(CartContext)
 
-    storedProducts.push(product)
+  async function setProductInBag({ name, id, price, description, image_url, quantity = 1 }: IStoredItem) {
 
-    localforage.setItem('shoppingCart', storedProducts).then(() => {
-      console.log('produto adicionado no carrinho')
-      router.push('/shoppingCart')
-    }).catch((error) => {
-      console.error('Erro ao armazenar itens no carrinho:', error)
-    })
+    addItemToCart(id, quantity, price, name, description, image_url)
+
   }
 
   return (
     <div className="flex flex-col">
-      <button 
+      <button
         onClick={() => router.back()}
         className="flex items-center w-[71px] gap-2 font-medium text-texts-text text-sm mt-[25px] mb-[22px]"
       >
-        <ArrowCircleLeft className="w-6 h-6"/>
+        <ArrowCircleLeft className="w-6 h-6" />
         Voltar
       </button>
-      {product && 
+      {product &&
         <div className="flex flex-row h-[580px]">
-          <Image 
+          <Image
             priority
             src={product?.image_url}
             alt={`Foto do produto ${product?.name}`}
-            width={640} 
-            height={580} 
+            width={640}
+            height={580}
             className="flex flex-1 w-full max-w-[640px] h-full max-h-[580px] rounded"
           />
           <div className="flex flex-col gap-2 ml-8 max-w-[448px]">
@@ -64,27 +59,27 @@ export default function Product({product}: InferGetServerSidePropsType<typeof ge
               <p className="font-medium text-texts-text">Descrição</p>
               <p className="text-sm text-[#41414D]">{product.description}</p>
             </div>
-            <button 
-              onClick={() => setProductInBag({name: product.name, id: product.id, price, description: product.description, image_url: product.image_url})}
+            <button
+              onClick={() => setProductInBag({ name: product.name, id: product.id, price, description: product.description, image_url: product.image_url, quantity: 1 })}
               className="flex items-center justify-center gap-3 w-full h-11 rounded text-background bg-brand-blue
               hover:bg-brand-blue/90">
-              <ShoppingBagOpen className="w-6 h-6"/>
+              <ShoppingBagOpen className="w-6 h-6" />
               ADICIONAR AO CARRINHO
             </button>
           </div>
         </div>
       }
-      
+
     </div>
   );
 }
 
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
-  const {query} = context
+  const { query } = context
   const id = query.id
   try {
-    const {data} = await client.query<ProductQuery>({
+    const { data } = await client.query<ProductQuery>({
       query: GetProduct,
       variables: {
         id
