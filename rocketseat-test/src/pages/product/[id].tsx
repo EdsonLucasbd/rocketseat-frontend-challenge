@@ -35,7 +35,8 @@ export default function Product({ product }: InferGetServerSidePropsType<typeof 
     <div className="flex flex-col">
       <button
         onClick={() => router.back()}
-        className="flex items-center w-[71px] gap-2 font-medium text-texts-text text-sm mt-[25px] mb-[22px]"
+        className="flex items-center w-[85px] gap-2 font-medium text-color-text 
+        text-sm mt-[25px] mb-[22px] hover:ring-2 hover:ring-color-text hover:rounded-full p-1"
       >
         <ArrowCircleLeft className="w-6 h-6" />
         Voltar
@@ -56,7 +57,7 @@ export default function Product({ product }: InferGetServerSidePropsType<typeof 
             <b className="mb-6 text-xl">R$ {price}</b>
             <p className="mb-[58px] text-xs text-[#41414D]">*Frete de R$40,00 para todo o Brasil. Grátis para compras acima de R$900,00.</p>
             <div className="flex flex-col gap-2 mb-auto">
-              <p className="font-medium text-texts-text">Descrição</p>
+              <p className="font-medium text-color-text">Descrição</p>
               <p className="text-sm text-[#41414D]">{product.description}</p>
             </div>
             <button

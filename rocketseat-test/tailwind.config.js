@@ -18,7 +18,7 @@ module.exports = {
           'blue': '#115D8C',
           'orange': '#F25D27', 
         },
-        'texts': {
+        'color': {
           'title': '#123952',
           'text': '#617480',
           'complement': '#A0ACB2'

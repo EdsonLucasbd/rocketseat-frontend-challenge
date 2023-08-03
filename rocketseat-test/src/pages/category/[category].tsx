@@ -22,13 +22,13 @@ export default function Category({ products }: InferGetServerSidePropsType<typeo
 
       {
         typeof products === undefined ? (
-          <div className="grid grid-cols-4 gap-x-8 gap-y-6 w-full">
+          <div className="grid grid-cols-4 gap-x-14 gap-y-6 w-full">
             {
               fakeProductsArray.map(item => <ProductCardWithLoader key={item} />)
             }
           </div>
         ) : (
-          <div className="grid grid-cols-4 gap-x-8 gap-y-6 w-full">
+          <div className="grid grid-cols-4 gap-x-14 gap-y-6 w-full">
             {
               products?.map((product) => (
                 <ProductCardWithLoader

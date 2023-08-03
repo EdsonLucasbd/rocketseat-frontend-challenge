@@ -40,7 +40,7 @@ const ProductLayout = ({ image, price, title, id }: ProductProps) => {
         aria-hidden
       />
       <div className="flex flex-col bg-white/40 h-[78px] py-2 px-3 gap-y-2 rounded-b-lg">
-        <p className={`${saira} font-saira text-texts-text font-light text-base`}>{title}</p>
+        <p className={`${saira} font-saira text-color-text font-light text-base`}>{title}</p>
         <hr className="bg-shapes-02" />
         <p className={`${saira} font-saira text-[#09090A] font-semibold text-sm`}>R$ {productPrice}</p>
       </div>

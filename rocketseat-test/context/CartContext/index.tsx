@@ -42,16 +42,22 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     amount: 0,
   });
 
+  const [isLoading, setIsLoading] = useState(true)
+
   useEffect(() => {
     async function loadCartFromStorage() {
       try {
         const cart = await localforage.getItem<IStoredItem[]>('cart');
-        const total = await localforage.getItem<number>('total');
-        if (cart && total !== null) {
-          setCartData({ cart, amount: total });
+        const amount = await localforage.getItem<number>('total');
+        if (cart && amount !== null) {
+          setCartData({ cart, amount });
+          setIsLoading(false);
+        } else {
+          setIsLoading(true);
         }
       } catch (error) {
         console.error('Error loading cart from storage:', error);
+        setIsLoading(true);
       }
     }
 
@@ -129,6 +135,11 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
   const getTotal = () => {
     return cartData.amount;
+  }
+
+  if (isLoading) {
+    // Pode ser exibida uma mensagem de carregando ou algum indicador de que os dados estão sendo buscados.
+    return <div>Loading...</div>;
   }
 
   return (

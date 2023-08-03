@@ -30,15 +30,16 @@ export default function ShoppingCart() {
     <div className="flex flex-col">
       <button
         onClick={() => router.back()}
-        className="flex items-center w-[71px] gap-2 font-medium text-texts-text text-sm mt-[25px] mb-[22px]"
+        className="flex items-center w-[85px] gap-2 font-medium text-color-text 
+        text-sm mt-[25px] mb-[22px] hover:ring-2 hover:ring-color-text hover:rounded-full p-1"
       >
         <ArrowCircleLeft className="w-6 h-6" />
         Voltar
       </button>
       <div className="flex flex-row gap-8">
         <div>
-          <p>Seu carrinho</p>
-          <p className="mt-[6px]">{`Total (${items?.length} produtos) R$${amount}`}</p>
+          <p className="font-medium text-2xl text-color-text">Seu carrinho</p>
+          <p className="mt-[6px] font-light">{`Total (${items?.length} produtos)`} <span className="font-semibold">{`R$${amount}`}</span></p>
           <div className="flex flex-col gap-4 mt-6">
             {items?.map((item) => (
               <ProductInBag
@@ -54,10 +55,10 @@ export default function ShoppingCart() {
             )}
           </div>
         </div>
-        <div className="flex flex-col w-[352px] bg-background px-6 pt-4 pb-6">
-          <p className="font-semibold text-xl">Resumo do pedido</p>
+        <div className="fixed flex flex-col w-[352px] min-h-[500px] right-40 bg-background px-6 pt-4 pb-6">
+          <p className="font-semibold text-xl text-color-text">Resumo do pedido</p>
           <div>
-            <div className="flex flex-col gap-3 pb-6 pt-[29px]">
+            <div className="flex flex-col gap-3 pb-6 pt-[29px] text-color-text">
               <span className="flex flex-row items-center justify-between">
                 <p>Subtotal de produtos</p>
                 <Suspense fallback={<span>Calculando...</span>}>

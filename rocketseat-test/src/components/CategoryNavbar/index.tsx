@@ -51,17 +51,17 @@ export const CategoryNav = () => {
   return (
     <div className='flex flex-row w-full items-center justify-between pt-[35px]'>
       <div className="flex flex-row gap-10">
-        <Link href='/' className={`${saira} ${(currentPage === '/' || currentPage.includes('/?page')) && 'pb-1 border-b-4 border-b-others-orange_low font-semibold'} font-saira`}>Todos os produtos</Link>
-        <Link href={`/category/${encodeURIComponent('t-shirts')}`} className={`${saira} ${currentPage.includes('t-shirts') && 'pb-1 border-b-4 border-b-others-orange_low font-semibold'} font-saira font-normal text-texts-text`}>Camisetas</Link>
-        <Link href={`/category/${encodeURIComponent('mugs')}`} className={`${saira} ${currentPage.includes('mugs') && 'pb-1 border-b-4 border-b-others-orange_low font-semibold'} font-saira font-normal text-texts-text`}>Canecas</Link>
+        <Link href='/' className={`${saira} ${(currentPage === '/' || currentPage.includes('/?page')) && 'pb-1 border-b-4 border-b-others-orange_low font-semibold'} font-saira text-color-text`}>Todos os produtos</Link>
+        <Link href={`/category/${encodeURIComponent('t-shirts')}`} className={`${saira} ${currentPage.includes('t-shirts') && 'pb-1 border-b-4 border-b-others-orange_low font-semibold'} font-saira font-normal text-color-text`}>Camisetas</Link>
+        <Link href={`/category/${encodeURIComponent('mugs')}`} className={`${saira} ${currentPage.includes('mugs') && 'pb-1 border-b-4 border-b-others-orange_low font-semibold'} font-saira font-normal text-color-text`}>Canecas</Link>
       </div>
       <>
         <Menu as='div' className='relative inline-block text-left'>
           <>
-            <Menu.Button className="inline-flex w-full justify-center rounded-md bg-transparent bg-opacity-20 px-4 py-1 text-sm font-medium text-texts-text hover:ring-2 hover:outline-none hover:ring-texts-title hover:ring-opacity-75 focus:outline-none focus-visible:ring-2 focus-visible:ring-texts-title focus-visible:ring-opacity-75">
+            <Menu.Button className="inline-flex w-full justify-center rounded-md bg-transparent bg-opacity-20 px-4 py-1 text-sm font-medium text-color-text hover:ring-2 hover:outline-none hover:ring-texts-title hover:ring-opacity-75 focus:outline-none focus-visible:ring-2 focus-visible:ring-texts-title focus-visible:ring-opacity-75">
               Organizar por
               <CaretDown
-                className="ml-2 -mr-1 h-4 w-4 mt-[2px] text-texts-text"
+                className="ml-2 -mr-1 h-4 w-4 mt-[2px] text-color-text"
                 aria-hidden="true"
               />
             </Menu.Button>
@@ -84,7 +84,7 @@ export const CategoryNav = () => {
                         sortField={link.sortField}
                         sortOrder={link.sortOrder}
                         title={link.label}
-                        className={`${active ? 'bg-texts-title text-white' : 'bg-white text-texts-text'
+                        className={`${active ? 'bg-texts-title text-white' : 'bg-white text-color-text'
                           } ${(router.query.sortField === link.sortField && router.query.sortOrder === link.sortOrder) ? 'ring-1 ring-texts-title' : ''} group hover:bg-texts-title hover:text-white flex w-full items-center rounded-md px-2 py-2 my-2 text-sm`}
                       />
                     )}
