@@ -10,43 +10,17 @@ interface ProductInBagProps {
   description: string
   value: number
   quantity: number
+  deleteItem: (id: string) => void
+  changeQuantity: (event: React.ChangeEvent<HTMLSelectElement>, id: string) => void
 }
 
-export const ProductInBag = ({ id, image, title, description, value, quantity }: ProductInBagProps) => {
+export const ProductInBag = ({ id, image, title, description, value, quantity, deleteItem, changeQuantity }: ProductInBagProps) => {
   const totalLimit = Array.from({ length: 10 }, (_, index) => index + 1)
-  const hiddenItem: { 'id': string }[] = []
 
-  const { cart, getCart, removeItemFromCart, updateItemQuantity } = useContext(CartContext)
-
-  async function checkItems(itemId: string) {
-    const items = getCart()
-    items.map((item) => item.id === itemId && quantity++)
-
-    console.log('quantidade', quantity)
-  }
-
-  async function deleteItem(itemId: string) {
-    removeItemFromCart(itemId)
-    hiddenItem.push({ 'id': itemId })
-    // const items = await localforage.getItem<IStoredItem[]>('cart') || []
-    // const index = items.findIndex(item => item.id === itemId)
-    // if (index !== -1) {
-    //   items.splice(index, 1)
-    //   await localforage.setItem('shoppingCart', items)
-
-    //   hiddenItem.push({ 'id': itemId })
-    // }
-
-    console.log(hiddenItem)
-  }
-
-  const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedValue = parseInt(event.target.value);
-    updateItemQuantity(id, selectedValue)
-  };
+  const { updateItemQuantity } = useContext(CartContext)
 
   return (
-    <div className="flex flex-row w-full h-[13.1875rem] max-w-[46rem]">
+    <div className="flex flex-row w-full h-[13.1875rem] max-w-[46rem] shadow-md">
       <Image
         src={image}
         alt=''
@@ -71,7 +45,7 @@ export const ProductInBag = ({ id, image, title, description, value, quantity }:
             name="quantity"
             id="quantity"
             defaultValue={quantity}
-            onChange={handleSelect}
+            onChange={(event) => changeQuantity(event, id)}
             className="w-[65px] h-10 px-3 text-color-text rounded-lg border bg-[#F3F5F6] border-[#A8A8B3]"
           >
             {totalLimit.map((number) => (

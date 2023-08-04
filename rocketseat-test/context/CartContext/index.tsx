@@ -18,9 +18,9 @@ interface ICartContext {
     name: string,
     description: string,
     image_url: string
-  ) => void;
-  removeItemFromCart: (id: string) => void;
-  updateItemQuantity: (id: string, quantity: number) => void;
+  ) => Promise<void>;
+  removeItemFromCart: (id: string) => Promise<void>;
+  updateItemQuantity: (id: string, quantity: number) => Promise<void>;
   getCart: () => IStoredItem[];
   getTotal: () => number;
 }
@@ -28,9 +28,9 @@ interface ICartContext {
 export const CartContext = createContext<ICartContext>({
   cart: [],
   amount: 0,
-  addItemToCart: (id: string, quantity: number) => { },
-  removeItemFromCart: (id: string) => { },
-  updateItemQuantity: (id: string, quantity: number) => { },
+  addItemToCart: async (id: string, quantity: number) => { },
+  removeItemFromCart: async (id: string) => { },
+  updateItemQuantity: async (id: string, quantity: number) => { },
   getCart: () => [],
   getTotal: () => 0,
 });

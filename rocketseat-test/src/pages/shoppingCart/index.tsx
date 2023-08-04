@@ -1,33 +1,47 @@
 import { ArrowCircleLeft } from "@phosphor-icons/react";
-import localforage from "localforage";
 import { useRouter } from "next/router";
 import { Suspense, useContext, useEffect, useState } from "react";
 import { IStoredItem } from "../product/[id]";
 import { ProductInBag } from "@/components/ProductInBag";
 import { CartContext } from "../../../context/CartContext";
+import { EmptyCart } from "@/components/EmptyCart";
 
 export default function ShoppingCart() {
   const router = useRouter()
   const [items, setItens] = useState<IStoredItem[]>()
   const [amount, setAmount] = useState(0)
+  const [removedItems, setRemovedItems] = useState(0)
 
-  const { getCart, getTotal } = useContext(CartContext)
+  const { getCart, getTotal, removeItemFromCart, updateItemQuantity } = useContext(CartContext)
 
-  console.log('itens', items)
-
-  function getItens() {
+  function getItems() {
     const storedItens = getCart()
     const amountValue = getTotal()
     setItens(storedItens)
     setAmount(amountValue)
   }
 
+  async function handleRemoveItem(itemId: string) {
+    await removeItemFromCart(itemId).then(() => {
+      setRemovedItems((prev) => prev + 1)
+    })
+  }
+
+  async function handleSelect(event: React.ChangeEvent<HTMLSelectElement>, id: string) {
+    const selectedValue = parseInt(event.target.value);
+    await updateItemQuantity(id, selectedValue)
+  };
+
   useEffect(() => {
-    getItens()
+    getItems()
   }, [])
 
+  useEffect(() => {
+    getItems()
+  }, [removedItems, handleSelect])
+
   return (
-    <div className="flex flex-col">
+    <div className={`flex flex-col ${items?.length! > 2 ? 'h-full' : 'h-screen'}`}>
       <button
         onClick={() => router.back()}
         className="flex items-center w-[85px] gap-2 font-medium text-color-text 
@@ -41,21 +55,28 @@ export default function ShoppingCart() {
           <p className="font-medium text-2xl text-color-text">Seu carrinho</p>
           <p className="mt-[6px] font-light">{`Total (${items?.length} produtos)`} <span className="font-semibold">{`R$${amount}`}</span></p>
           <div className="flex flex-col gap-4 mt-6">
-            {items?.map((item) => (
-              <ProductInBag
-                key={item.id}
-                id={item.id}
-                image={item.image_url}
-                title={item.name}
-                description={item.description}
-                value={item.price}
-                quantity={item.quantity}
-              />
-            )
-            )}
+            {items?.length !== 0 ?
+              (
+                items?.map((item) => (
+                  <ProductInBag
+                    key={item.id}
+                    id={item.id}
+                    image={item.image_url}
+                    title={item.name}
+                    description={item.description}
+                    value={item.price}
+                    quantity={item.quantity}
+                    deleteItem={() => handleRemoveItem(item.id)}
+                    changeQuantity={(event) => handleSelect(event, item.id)}
+                  />
+                ))
+              ) : (
+                <EmptyCart />
+              )
+            }
           </div>
         </div>
-        <div className="fixed flex flex-col w-[352px] min-h-[500px] right-40 bg-background px-6 pt-4 pb-6">
+        <div className="fixed flex flex-col w-[352px] min-h-[500px] right-40 bg-background px-6 pt-4 pb-6 shadow-md">
           <p className="font-semibold text-xl text-color-text">Resumo do pedido</p>
           <div>
             <div className="flex flex-col gap-3 pb-6 pt-[29px] text-color-text">
