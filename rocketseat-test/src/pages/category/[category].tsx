@@ -5,6 +5,7 @@ import { client } from "@/graphql/client";
 import { AllProductsQuery } from "@/graphql/generate/graphql";
 import { GetAllProducts } from "@/graphql/queries";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import Head from "next/head";
 import { useRouter } from "next/router";
 
 export default function Category({ products }: InferGetServerSidePropsType<typeof getServerSideProps>) {
@@ -15,38 +16,43 @@ export default function Category({ products }: InferGetServerSidePropsType<typeo
   const currentPage = router.asPath
 
   return (
-    <div className='flex flex-col'>
-      <CategoryNav />
+    <>
+      <Head>
+        <title>E.L store | {router.query.category === 't-shirts' ? 'camisetas' : 'canecas'}</title>
+      </Head>
+      <div className='flex flex-col'>
+        <CategoryNav />
 
-      <PageNavigationButton array={numberButtonsArray} currentPage={currentPage} />
-
-      {
-        typeof products === undefined ? (
-          <div className="grid grid-cols-4 gap-x-14 gap-y-6 w-full">
-            {
-              fakeProductsArray.map(item => <ProductCardWithLoader key={item} />)
-            }
-          </div>
-        ) : (
-          <div className="grid grid-cols-4 gap-x-14 gap-y-6 w-full">
-            {
-              products?.map((product) => (
-                <ProductCardWithLoader
-                  key={product?.id}
-                  image={product?.image_url}
-                  title={product?.name}
-                  price={product?.price_in_cents}
-                  id={product?.id}
-                />
-              ))
-            }
-          </div>
-        )
-      }
-      <div className="mt-[74px] -mb-8">
         <PageNavigationButton array={numberButtonsArray} currentPage={currentPage} />
+
+        {
+          typeof products === undefined ? (
+            <div className="grid grid-cols-4 gap-x-14 gap-y-6 w-full">
+              {
+                fakeProductsArray.map(item => <ProductCardWithLoader key={item} />)
+              }
+            </div>
+          ) : (
+            <div className="grid grid-cols-4 gap-x-14 gap-y-6 w-full">
+              {
+                products?.map((product) => (
+                  <ProductCardWithLoader
+                    key={product?.id}
+                    image={product?.image_url}
+                    title={product?.name}
+                    price={product?.price_in_cents}
+                    id={product?.id}
+                  />
+                ))
+              }
+            </div>
+          )
+        }
+        <div className="mt-[74px] -mb-8">
+          <PageNavigationButton array={numberButtonsArray} currentPage={currentPage} />
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 

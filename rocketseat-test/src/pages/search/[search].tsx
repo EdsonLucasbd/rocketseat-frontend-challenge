@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import { CategoryNav } from "@/components/CategoryNavbar";
 import { PageNavigationButton } from "@/components/PageNavigationButton";
 import { ProductCardWithLoader } from "@/components/ProductLayout";
@@ -14,41 +15,44 @@ export default function Search({ products }: InferGetServerSidePropsType<typeof 
   const router = useRouter()
   const currentPage = router.asPath
 
-  console.log('nome', router.query.search)
-
   return (
-    <div className='flex flex-col'>
-      <CategoryNav />
+    <>
+      <Head>
+        <title>E.L store | {router.query.search}</title>
+      </Head>
+      <div className='flex flex-col'>
+        <CategoryNav />
 
-      <PageNavigationButton array={numberButtonsArray} currentPage={currentPage} />
-
-      {
-        typeof products === undefined ? (
-          <div className="grid grid-cols-4 gap-x-14 gap-y-6 w-full">
-            {
-              fakeProductsArray.map(item => <ProductCardWithLoader key={item} />)
-            }
-          </div>
-        ) : (
-          <div className="grid grid-cols-4 gap-x-14 gap-y-6 w-full">
-            {
-              products?.map((product) => (
-                <ProductCardWithLoader
-                  key={product?.id}
-                  image={product?.image_url}
-                  title={product?.name}
-                  price={product?.price_in_cents}
-                  id={product?.id}
-                />
-              ))
-            }
-          </div>
-        )
-      }
-      <div className="mt-[74px] -mb-8">
         <PageNavigationButton array={numberButtonsArray} currentPage={currentPage} />
+
+        {
+          typeof products === undefined ? (
+            <div className="grid grid-cols-4 gap-x-14 gap-y-6 w-full">
+              {
+                fakeProductsArray.map(item => <ProductCardWithLoader key={item} />)
+              }
+            </div>
+          ) : (
+            <div className="grid grid-cols-4 gap-x-14 gap-y-6 w-full">
+              {
+                products?.map((product) => (
+                  <ProductCardWithLoader
+                    key={product?.id}
+                    image={product?.image_url}
+                    title={product?.name}
+                    price={product?.price_in_cents}
+                    id={product?.id}
+                  />
+                ))
+              }
+            </div>
+          )
+        }
+        <div className="mt-[74px] -mb-8">
+          <PageNavigationButton array={numberButtonsArray} currentPage={currentPage} />
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 
