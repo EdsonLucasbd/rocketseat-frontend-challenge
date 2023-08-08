@@ -30,9 +30,9 @@ export const ProductInBag = ({ id, image, title, description, value, quantity, d
         className="rounded-l-lg object-cover"
       />
       <div className="bg-background rounded-r-lg w-full pl-[32px] pr-4 pt-4">
-        <span className="flex flex-row justify-between items-center pb-3 text-xl text-color-text">
+        <span className="relative flex flex-row items-center pb-3 text-xl text-color-text">
           {title}
-          <button className="">
+          <button className="absolute hover:bg-color-complement/20 rounded-full right-0 p-2">
             <Trash
               className="w-6 h-6 text-others-delete"
               onClick={() => deleteItem(id)}
@@ -46,7 +46,7 @@ export const ProductInBag = ({ id, image, title, description, value, quantity, d
             id="quantity"
             defaultValue={quantity}
             onChange={(event) => changeQuantity(event, id)}
-            className="w-[65px] h-10 px-3 text-color-text rounded-lg border bg-[#F3F5F6] border-[#A8A8B3]"
+            className="cursor-pointer hover:ring hover:ring-others-blue_low w-[65px] h-10 px-3 text-color-text rounded-lg border bg-[#F3F5F6] border-[#A8A8B3]"
           >
             {totalLimit.map((number) => (
               <option key={number} value={number}>{number}</option>

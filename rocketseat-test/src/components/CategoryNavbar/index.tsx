@@ -47,9 +47,9 @@ export const CategoryNav = () => {
   return (
     <div className={`flex flex-row w-full items-center ${search ? 'justify-end' : 'justify-between'} pt-[35px]`}>
       <div className={`flex flex-row gap-10 ${search && 'hidden'}`}>
-        <Link href='/' className={`${saira} ${(currentPage === '/' || currentPage.includes('/?page')) && 'pb-1 border-b-4 border-b-others-orange_low font-semibold'} font-saira text-color-text`}>Todos os produtos</Link>
-        <Link href={`/category/${encodeURIComponent('t-shirts')}`} className={`${saira} ${currentPage.includes('t-shirts') && 'pb-1 border-b-4 border-b-others-orange_low font-semibold'} font-saira font-normal text-color-text`}>Camisetas</Link>
-        <Link href={`/category/${encodeURIComponent('mugs')}`} className={`${saira} ${currentPage.includes('mugs') && 'pb-1 border-b-4 border-b-others-orange_low font-semibold'} font-saira font-normal text-color-text`}>Canecas</Link>
+        <Link href='/' className={`${saira} ${(currentPage === '/' || currentPage.includes('/?page')) && 'pb-1 border-b-4 border-b-others-orange_low font-semibold'} font-saira text-color-text hover:text-color-title`}>Todos os produtos</Link>
+        <Link href={`/category/${encodeURIComponent('t-shirts')}`} className={`${saira} ${currentPage.includes('t-shirts') && 'pb-1 border-b-4 border-b-others-orange_low font-semibold'} font-saira font-normal text-color-text hover:text-color-title`}>Camisetas</Link>
+        <Link href={`/category/${encodeURIComponent('mugs')}`} className={`${saira} ${currentPage.includes('mugs') && 'pb-1 border-b-4 border-b-others-orange_low font-semibold'} font-saira font-normal text-color-text hover:text-color-title`}>Canecas</Link>
       </div>
       <>
         <Menu as='div' className='relative inline-block text-left'>
