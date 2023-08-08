@@ -12,13 +12,18 @@ export const PageNavigationButton = ({ array, currentPage }: PageNavigationButto
   const { category = '' } = router.query || {}
   const { search = '' } = router.query || {}
 
-  console.log('search', currentPage === `/search/${search}?page=${array.length - 1}`)
-  console.log('category', currentPage === `/category/${category}?page=${array.length - 1}`)
-
   function goToNextPage() {
     let initial_page = router.query.page ?? 0
 
     router.push(`${category !== '' ? category : search}?page=${Number(initial_page) + 1}`)
+  }
+
+  function checkPage(btnNumber: number) {
+    const categoryCase = currentPage === `/category/${category}` && btnNumber === 0
+    const searchCase = currentPage === `/search/${search}` && btnNumber === 0
+    const homeCase = currentPage === '/' && btnNumber === 0
+
+    return categoryCase || searchCase || homeCase
   }
 
   return (
@@ -30,7 +35,7 @@ export const PageNavigationButton = ({ array, currentPage }: PageNavigationButto
             href={`${category !== '' ? category : search}?page=${buttonNumber}`}
             aria-label={`acessar a página ${buttonNumber + 1}`}
             className={`flex items-center justify-center rounded-lg w-8 h-8 
-                ${(currentPage.includes(`?page=${buttonNumber}`)) || (currentPage === `/category/${category}` && buttonNumber === 0) || (currentPage === '/' && buttonNumber === 0) ? 'bg-background text-others-orange_low ring-1 ring-others-orange_low' : 'bg-[#E9E9F0] text-color-complement'}
+                ${(currentPage.includes(`?page=${buttonNumber}`)) || checkPage(buttonNumber) ? 'bg-background text-others-orange_low ring-1 ring-others-orange_low' : 'bg-[#E9E9F0] text-color-complement'}
                 hover:bg-shapes-02`}
           >
             {buttonNumber + 1}
