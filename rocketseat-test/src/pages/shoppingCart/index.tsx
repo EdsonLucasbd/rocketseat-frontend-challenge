@@ -33,6 +33,10 @@ export default function ShoppingCart() {
     await updateItemQuantity(id, selectedValue)
   }
 
+  function handleCheckout() {
+    router.push('/checkout')
+  }
+
   useEffect(() => {
     getItems()
   }, [])
@@ -105,6 +109,7 @@ export default function ShoppingCart() {
               </span>
             </div>
             <button
+              onClick={handleCheckout}
               disabled={items?.length === 0}
               className="bg-others-green text-background hover:bg-green-600 disabled:bg-color-text disabled:cursor-not-allowed w-full h-11 rounded"
             >

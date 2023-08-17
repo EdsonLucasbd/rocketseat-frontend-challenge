@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "faker": "^5.5.3",
-    "json-graphql-server": "^2.2.3"
+    "json-graphql-server": "^2.2.3",
+    "yarn": "^1.22.19"
   }
 }
