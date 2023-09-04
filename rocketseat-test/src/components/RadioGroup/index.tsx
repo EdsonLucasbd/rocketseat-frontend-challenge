@@ -26,7 +26,7 @@ export const RadioGroup = ({ label, id, ...rest }: RadioGroupProps) => {
         name="payment"
         {...rest}
         id={id} />
-      <label htmlFor={id} className="text-color-text peer-checked:text-brand-orange">{label}</label>
+      <label htmlFor={id} className="text-color-text cursor-pointer peer-checked:text-brand-orange">{label}</label>
     </div>
   )
 }

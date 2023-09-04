@@ -134,7 +134,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   }
 
   const getTotal = () => {
-    return cartData.amount;
+    return Number(cartData.amount.toFixed(2));
   }
 
   if (isLoading) {

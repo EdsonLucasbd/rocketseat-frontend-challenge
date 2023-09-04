@@ -1,9 +1,10 @@
 import { CreditCard } from '@/components/CreditCard'
 import Image from 'next/image'
-import React, { useState } from 'react'
+import React, { ChangeEvent, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { cardNumberMask, validityMask } from '@/utils/cardFormMasks'
 
 type creditCardFormData = z.infer<typeof creditCardFormSchema>
 
@@ -11,7 +12,7 @@ const creditCardFormSchema = z.object({
   name: z.string().min(3, { message: 'Informe o nome do titular do cartão' }),
   cardNumber: z.string()
     .min(19, { message: 'Informe o número do cartão' })
-    .transform((value) => Number(value.replace(/\s+/g, ''))),
+    .transform((value) => value.replace(/\s+/g, '')),
   validity: z.string().min(5, { message: 'Informe a validade do cartão' }),
   cvv: z.string()
     .min(3, { message: 'Informe o código de segurança do cartão' })
@@ -19,8 +20,8 @@ const creditCardFormSchema = z.object({
 })
 
 export const CardForm = () => {
-  const [isCompletedData, setIsCompletedData] = useState(false)
   const [cardData, setCardData] = useState('')
+  const [flipCard, setFlipCard] = useState(false)
 
   const {
     register,
@@ -37,11 +38,28 @@ export const CardForm = () => {
   const cardValidity = watch('validity')
   const cardCVV = String(watch('cvv'))
 
+
+  function handleCardNumberChange(event: ChangeEvent<HTMLInputElement>) {
+    setValue('cardNumber', cardNumberMask(event.target.value))
+  }
+
+  function handleValidityChange(event: ChangeEvent<HTMLInputElement>){
+    setValue('validity', validityMask(event.target.value))
+  }
+
+
   async function buyWithCard(data: unknown) {
     setCardData(JSON.stringify(data, null, 2))
     console.log('dados do cartão', cardData)
   }
 
+  function autoFlipCard() {
+    setFlipCard(true)
+  }
+
+  function untapCard() {
+    setFlipCard(false)
+  }
 
   return (
     <div className='flex flex-col gap-y-12'>
@@ -50,7 +68,7 @@ export const CardForm = () => {
         className='flex flex-col gap-y-6'
       >
         <fieldset className='flex flex-col gap-1'>
-          <label htmlFor="cardNumber">Número do cartão</label>
+          <label className='text-color-title' htmlFor="cardNumber">Número do cartão</label>
           <input
             className='w-[23.4375rem] h-12 rounded-md p-3 bg-page-background/50 border 
           border-color-complement outline-none focus:border-brand-orange
@@ -60,6 +78,7 @@ export const CardForm = () => {
             maxLength={19}
             {...register('cardNumber')}
             placeholder='**** **** **** ****'
+            onChange={handleCardNumberChange}
           />
           {errors.cardNumber &&
             <span className='text-sm text-others-delete font-light'>
@@ -68,7 +87,7 @@ export const CardForm = () => {
           }
         </fieldset>
         <fieldset className='flex flex-col gap-1'>
-          <label htmlFor="name">Nome do Titular</label>
+          <label className='text-color-title' htmlFor="name">Nome do Titular</label>
           <input
             className='w-[23.4375rem] h-12 rounded-md p-3 bg-page-background/50 border border-color-complement 
         outline-none focus:border-brand-orange text-color-text'
@@ -87,7 +106,7 @@ export const CardForm = () => {
 
         <div className="flex flex-row gap-4">
           <fieldset className='flex flex-col gap-1'>
-            <label htmlFor="validity">Validade</label>
+            <label className='text-color-title' htmlFor="validity">Validade</label>
             <input
               className='w-[13.125rem] h-12 rounded-md p-3 bg-page-background/50 border border-color-complement 
           outline-none focus:border-brand-orange text-color-text'
@@ -96,6 +115,7 @@ export const CardForm = () => {
               maxLength={5}
               {...register('validity')}
               placeholder="MM/AA"
+              onChange={handleValidityChange}
             />
             {errors.validity &&
               <span className='text-sm text-others-delete font-light'>
@@ -105,7 +125,7 @@ export const CardForm = () => {
           </fieldset>
 
           <fieldset className='flex flex-col gap-1'>
-            <label htmlFor="cvv">CVV</label>
+            <label className='text-color-title' htmlFor="cvv">CVV</label>
             <input
               className='w-[9.375rem] h-12 rounded-md p-3 bg-page-background/50 
                 border border-color-complement outline-none 
@@ -114,6 +134,8 @@ export const CardForm = () => {
               id="cvv"
               maxLength={3}
               {...register('cvv')}
+              onFocus={autoFlipCard}
+              onBlur={untapCard}
               placeholder="***"
             />
             {errors.cvv &&
@@ -138,6 +160,7 @@ export const CardForm = () => {
           name={cardName}
           validity={cardValidity}
           cvv={cardCVV}
+          isFlipped={flipCard}
         />
         <div className='flex items-center gap-2'>
           <Image
