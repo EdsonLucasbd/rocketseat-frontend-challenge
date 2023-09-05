@@ -1,4 +1,4 @@
-import { Saira, Saira_Stencil_One, } from 'next/font/google'
+import { Saira, Saira_Stencil_One, Abril_Fatface } from 'next/font/google'
 
 const saira_normal = Saira({ 
   weight: ['300', '400', '500', '600'],
@@ -14,5 +14,13 @@ const saira_stencil = Saira_Stencil_One({
   display: 'swap'
 })
 
+const abril_Fatface = Abril_Fatface({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-abril_Fatface',
+  style: 'normal',
+  display: 'auto'
+})
+
 export const saira = saira_normal.variable
-export const saira_stencil_one = saira_stencil.variable
+export const abril = abril_Fatface.className

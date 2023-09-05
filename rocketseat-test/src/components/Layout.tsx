@@ -1,4 +1,4 @@
-import { saira, saira_stencil_one } from '@/utils/fonts';
+import { saira, abril } from '@/utils/fonts';
 import { ShoppingBagOpen } from '@phosphor-icons/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -19,7 +19,7 @@ const Header = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className='flex flex-col'>
       <header className='flex items-center justify-between w-full h-20 bg-shapes-01 px-40'>
-        <Link href={'/'} aria-label='voltar para a página inicial' className={`${saira_stencil_one} font-saira-stencil-one text-color-text text-[40px]`}>E.L store</Link>
+        <Link href={'/'} aria-label='voltar para a página inicial' className={`${abril} font-saira-stencil-one text-color-text text-[40px]`}>E.L store</Link>
         <div className='flex flex-row gap-6'>
           <ItemSearchForm />
           <span className='relative inline-flex'>

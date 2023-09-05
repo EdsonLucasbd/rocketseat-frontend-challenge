@@ -6,6 +6,7 @@ import { CardForm } from '../forms/CardForm'
 import { BankSlip } from '../forms/BankSlip'
 import { IStoredItem } from '@/pages/product/[id]'
 import { CartContext } from '../../../context/CartContext'
+import { PersonalInfoForm } from '../forms/InfoForm'
 
 export const CheckoutPanel = () => {
   const [payment, setPayment] = useState('card')
@@ -30,7 +31,8 @@ export const CheckoutPanel = () => {
           <span className='font-semibold text-color-text'>Pagamento</span>
         </span>
         <div className='flex flex-col justify-between'>
-          <form defaultValue={payment} className='flex flex-col gap-4 mb-6'>
+          <PersonalInfoForm />
+          {/* <form defaultValue={payment} className='flex flex-col gap-4 mb-6'>
             <label htmlFor="payment-methods" className='text-color-text text-lg font-medium'>Pague com:</label>
             <fieldset id='payment-methods' className='flex flex-row gap-5'>
               <RadioGroup
@@ -55,13 +57,13 @@ export const CheckoutPanel = () => {
                 checked={payment === 'pix'}
               />
             </fieldset>
-          </form>
+          </form> */}
 
-          {payment === 'card' ? (
+          {/* {payment === 'card' ? (
             <CardForm />
           ) : payment === 'bank-slip' ? (
             <BankSlip value={amount.toString()} />
-          ) : <PixForm value={amount.toString()} />}
+          ) : <PixForm value={amount.toString()} />} */}
         </div>
       </div>
       <div className="flex flex-col w-full px-11 py-9 
@@ -99,7 +101,7 @@ export const CheckoutPanel = () => {
           </div>
           <div className="flex flex-row items-center justify-between">
             <p>Total</p>
-            <p className='font-medium'>R${amount}</p>
+            <p className='font-medium text-lg'>R${amount}</p>
           </div>
         </div>
       </div>

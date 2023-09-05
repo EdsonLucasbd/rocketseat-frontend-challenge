@@ -4,7 +4,7 @@ import React, { ChangeEvent, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { cardNumberMask, validityMask } from '@/utils/cardFormMasks'
+import { cardNumberMask, validityMask } from '@/utils/masks'
 
 type creditCardFormData = z.infer<typeof creditCardFormSchema>
 
@@ -43,14 +43,13 @@ export const CardForm = () => {
     setValue('cardNumber', cardNumberMask(event.target.value))
   }
 
-  function handleValidityChange(event: ChangeEvent<HTMLInputElement>){
+  function handleValidityChange(event: ChangeEvent<HTMLInputElement>) {
     setValue('validity', validityMask(event.target.value))
   }
 
 
   async function buyWithCard(data: unknown) {
     setCardData(JSON.stringify(data, null, 2))
-    console.log('dados do cartão', cardData)
   }
 
   function autoFlipCard() {

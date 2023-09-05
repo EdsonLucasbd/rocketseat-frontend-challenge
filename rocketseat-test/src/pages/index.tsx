@@ -19,7 +19,7 @@ export default function Home({ products }: InferGetServerSidePropsType<typeof ge
   return (
     <>
       <Head>
-        <title>E.L Store</title>
+        <title>E.L store</title>
       </Head>
       <div className='flex flex-col w-full'>
         <CategoryNav />

@@ -48,7 +48,7 @@ export default function ShoppingCart() {
   return (
     <>
       <Head>
-        <title>E.L Store | Seu Carrinho</title>
+        <title>E.L store | Seu Carrinho</title>
       </Head>
       <div className={`flex flex-col ${items?.length! > 2 ? 'h-full' : 'h-screen'}`}>
         <button
