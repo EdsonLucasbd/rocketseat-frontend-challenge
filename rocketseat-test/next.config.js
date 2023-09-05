@@ -9,7 +9,13 @@ const nextConfig = {
         hostname: 'storage.googleapis.com',
         port: '',
         pathname: '/xesque-dev/challenge-images/**'
-      }
+      },
+      {
+        protocol: 'https',
+        hostname: 'api.qrserver.com',
+        port: '',
+        pathname: '/**'
+      },
     ]
   }
 }

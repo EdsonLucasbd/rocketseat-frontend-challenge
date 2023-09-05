@@ -61,24 +61,47 @@ export const CheckoutPanel = () => {
             <CardForm />
           ) : payment === 'bank-slip' ? (
             <BankSlip value={amount.toString()} />
-          ) : <PixForm />}
+          ) : <PixForm value={amount.toString()} />}
         </div>
       </div>
       <div className="flex flex-col w-full px-11 py-9 
         bg-shapes-02 rounded-lg divide-y divide-dashed divide-zinc-400">
         {items?.map(item => (
           <div className="flex flex-row gap-4 py-5 first:pt-0 last:pb-0">
-            <Image
-              src={item.image_url}
-              alt=''
-              width={150}
-              height={150}
-              className='rounded-md shadow-md'
-            />
-            <p className='font-medium text-color-title'>{item.name}</p>
+            <div className="relative ">
+              <Image
+                src={item.image_url}
+                alt=''
+                width={150}
+                height={150}
+                className='rounded-md shadow-md'
+              />
+              <span className="absolute flex items-center justify-center w-6 h-6 rounded-full bg-color-title 
+                text-white -top-2 -right-2">
+                {item.quantity}
+              </span>
+            </div>
+            <div className="flex flex-row w-full items-start justify-between">
+              <p className='font-medium text-color-title'>{item.name}</p>
+              <p>R${item.price}</p>
+            </div>
           </div>
         ))
         }
+        <div className="flex flex-col pt-5">
+          <div className="flex flex-row items-center justify-between">
+            <p>Subtotal</p>
+            <p className='font-medium'>R${(amount - Number(40)).toFixed(2)}</p>
+          </div>
+          <div className="flex flex-row items-center justify-between">
+            <p>Entrega</p>
+            <p className='font-light'>R$40,00</p>
+          </div>
+          <div className="flex flex-row items-center justify-between">
+            <p>Total</p>
+            <p className='font-medium'>R${amount}</p>
+          </div>
+        </div>
       </div>
     </div>
 
