@@ -1,19 +1,22 @@
 import Image from 'next/image'
 import { useContext, useEffect, useState } from 'react'
-import { RadioGroup } from '../RadioGroup'
-import { PixForm } from '../forms/PixForm'
-import { CardForm } from '../forms/CardForm'
-import { BankSlip } from '../forms/BankSlip'
 import { IStoredItem } from '@/pages/product/[id]'
 import { CartContext } from '../../../context/CartContext'
 import { PersonalInfoForm } from '../forms/InfoForm'
+import { PaymentForm } from '../forms/PaymentForm'
+import { BreadCrumbs } from '../BreadCrumbs'
 
 export const CheckoutPanel = () => {
   const [payment, setPayment] = useState('card')
   const [items, setItems] = useState<IStoredItem[]>()
   const [amount, setAmount] = useState(0)
+  const [showPayments, setShowPayments] = useState(false)
 
   const { getCart, getTotal } = useContext(CartContext)
+
+  function handleFormASubmit() {
+    setShowPayments(true);
+  };
 
   useEffect(() => {
     const storedItens = getCart()
@@ -25,51 +28,19 @@ export const CheckoutPanel = () => {
   return (
     <div className="flex flex-row gap-4">
       <div className='flex flex-col space-y-0 w-2/5 px-11 py-9 bg-background rounded-lg'>
-        <span className='flex flex-row items-start gap-3 mb-11'>
-          <span className='text-brand-orange font-light'>Carrinho</span>
-          <Image src='/breadcrumb-icon.svg' width={96} height={24} alt='' aria-hidden />
-          <span className='font-semibold text-color-text'>Pagamento</span>
-        </span>
+        <BreadCrumbs infoIsFilled={showPayments} setInfoIsFilled={setShowPayments} />
         <div className='flex flex-col justify-between'>
-          <PersonalInfoForm />
-          {/* <form defaultValue={payment} className='flex flex-col gap-4 mb-6'>
-            <label htmlFor="payment-methods" className='text-color-text text-lg font-medium'>Pague com:</label>
-            <fieldset id='payment-methods' className='flex flex-row gap-5'>
-              <RadioGroup
-                label='Cartão de crédito'
-                value='card'
-                onChange={event => setPayment(event.target.value)}
-                id='card'
-                checked={payment === 'card'}
-              />
-              <RadioGroup
-                label='Boleto'
-                value='bank-slip'
-                onChange={event => setPayment(event.target.value)}
-                id='bank-slip'
-                checked={payment === 'bank-slip'}
-              />
-              <RadioGroup
-                label='Pix'
-                value='pix'
-                onChange={event => setPayment(event.target.value)}
-                id='pix'
-                checked={payment === 'pix'}
-              />
-            </fieldset>
-          </form> */}
-
-          {/* {payment === 'card' ? (
-            <CardForm />
-          ) : payment === 'bank-slip' ? (
-            <BankSlip value={amount.toString()} />
-          ) : <PixForm value={amount.toString()} />} */}
+          {showPayments ? (
+            <PaymentForm method={payment} setMethod={setPayment} />
+          ) : (
+            <PersonalInfoForm onSubmit={handleFormASubmit} />
+          )}
         </div>
       </div>
       <div className="flex flex-col w-full px-11 py-9 
         bg-shapes-02 rounded-lg divide-y divide-dashed divide-zinc-400">
         {items?.map(item => (
-          <div className="flex flex-row gap-4 py-5 first:pt-0 last:pb-0">
+          <div key={item.id} className="flex flex-row gap-4 py-5 first:pt-0 last:pb-0">
             <div className="relative ">
               <Image
                 src={item.image_url}
