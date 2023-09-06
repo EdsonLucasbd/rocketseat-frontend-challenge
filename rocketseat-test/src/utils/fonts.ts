@@ -18,6 +18,7 @@ const abril_Fatface = Abril_Fatface({
   weight: '400',
   subsets: ['latin'],
   variable: '--font-abril_Fatface',
+  
   style: 'normal',
   display: 'auto'
 })

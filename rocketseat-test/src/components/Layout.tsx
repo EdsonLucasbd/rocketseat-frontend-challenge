@@ -18,8 +18,16 @@ const Header = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div className='flex flex-col'>
-      <header className='flex items-center justify-between w-full h-20 bg-shapes-01 px-40'>
-        <Link href={'/'} aria-label='voltar para a página inicial' className={`${abril} font-saira-stencil-one text-color-text text-[40px]`}>E.L store</Link>
+      <header className='flex items-center justify-between w-full h-20
+      bg-shapes-01 px-7 md:px-40'>
+        <Link
+          href={'/'}
+          aria-label='voltar para a página inicial'
+          className={`${abril} font-saira-stencil-one text-color-text text-2xl 
+            md:text-[2.5rem] leading-5 md:leading-normal`}
+        >
+          E.L store
+        </Link>
         <div className='flex flex-row gap-6'>
           <ItemSearchForm />
           <span className='relative inline-flex'>
@@ -30,11 +38,12 @@ const Header = ({ children }: { children: React.ReactNode }) => {
                 onClick={() => router.push('/shoppingCart')}
               />
             </button>
-            <span className={`absolute ${saira} font-saira w-[17px] h-[17px] -bottom-2 right-0 inline-flex items-center justify-center p-[5px] text-[10px] font-medium leading-none text-shapes-01 transform translate-x-1/2 -translate-y-1/2 bg-others-delete rounded-full`}>{itemsInShoppingCart}</span>
+            <span className={`absolute ${saira} font-saira w-[1.0625rem] h-[1.0625rem] -bottom-2 right-0 inline-flex items-center justify-center p-[.3125rem] text-[.625rem] font-medium leading-none text-shapes-01 transform translate-x-1/2 -translate-y-1/2 bg-others-delete rounded-full`}>{itemsInShoppingCart}</span>
           </span>
         </div>
       </header>
-      <main className={`${saira} font-saira w-full h-full bg-page-background px-40 pb-[60px]`}>
+      <main className={`${saira} font-saira w-full h-full bg-page-background 
+        px-7 md:px-40 pb-[3.75rem] overflow-x-hidden`}>
         {children}
       </main>
     </div>

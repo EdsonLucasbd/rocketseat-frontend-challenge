@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 export const EmptyCart = () => {
   return (
-    <div className='flex flex-col items-center justify-center gap-8 mt-10 w-[46rem]'>
+    <div className='flex flex-col items-center justify-center gap-8 mt-10 w-full md:w-[46rem]'>
       <Image
         src={'/EmptyShopCart.svg'}
         width={497}

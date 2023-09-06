@@ -47,7 +47,7 @@ export default function Product({ product }: InferGetServerSidePropsType<typeof 
           Voltar
         </button>
         {product &&
-          <div className="flex flex-row h-[580px]">
+          <div className="flex flex-col md:flex-row h-full md:h-[580px]">
             <Image
               priority
               src={product?.image_url}
@@ -56,12 +56,12 @@ export default function Product({ product }: InferGetServerSidePropsType<typeof 
               height={580}
               className="flex flex-1 w-full max-w-[640px] h-full max-h-[580px] rounded"
             />
-            <div className="flex flex-col gap-2 ml-8 max-w-[448px]">
+            <div className="flex flex-col gap-2 mt-8 md:mt-0 md:ml-8 max-w-[448px]">
               <p className="mb-3 text-base text-[#41414D]">{translatedCategoryName}</p>
               <p className="mb-1 font-light text-[32px] text-[#41414D]">{product.name}</p>
-              <b className="mb-6 text-xl">R$ {price}</b>
-              <p className="mb-[58px] text-xs text-[#41414D]">*Frete de R$40,00 para todo o Brasil. Grátis para compras acima de R$900,00.</p>
-              <div className="flex flex-col gap-2 mb-auto">
+              <b className="mb-3 md:mb-6 text-xl">R$ {price}</b>
+              <p className="mb-11 md:mb-[58px] text-xs text-[#41414D]">*Frete de R$40,00 para todo o Brasil. Grátis para compras acima de R$900,00.</p>
+              <div className="flex flex-col gap-2 mb-8 md:mb-auto">
                 <p className="font-medium text-color-text">Descrição</p>
                 <p className="text-sm text-[#41414D]">{product.description}</p>
               </div>

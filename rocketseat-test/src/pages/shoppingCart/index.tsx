@@ -59,7 +59,7 @@ export default function ShoppingCart() {
           <ArrowCircleLeft className="w-6 h-6" />
           Voltar
         </button>
-        <div className="flex flex-row gap-8">
+        <div className="flex flex-col md:flex-row gap-8">
           <div>
             <p className="font-medium text-2xl text-color-text">Seu carrinho</p>
             <p className="mt-[6px] font-light">{`Total (${items?.length} produtos)`} <span className="font-semibold">{`R$${amount}`}</span></p>
@@ -85,7 +85,7 @@ export default function ShoppingCart() {
               }
             </div>
           </div>
-          <div className="fixed flex flex-col w-[352px] min-h-[500px] right-40 bg-background px-6 pt-4 pb-6 shadow-md">
+          <div className="md:fixed flex flex-col w-full md:w-[352px] min-h-[500px] right-40 bg-background px-6 pt-4 pb-6 shadow-md">
             <p className="font-semibold text-xl text-color-text">Resumo do pedido</p>
             <div>
               <div className="flex flex-col gap-3 pb-6 pt-[29px] text-color-text">

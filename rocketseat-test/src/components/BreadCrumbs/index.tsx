@@ -1,3 +1,4 @@
+import { CaretRight } from '@phosphor-icons/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { Dispatch, SetStateAction } from 'react'
@@ -13,23 +14,33 @@ export const BreadCrumbs = ({ infoIsFilled, setInfoIsFilled }: BreadCrumbsProps)
   }
 
   return (
-    <span className='flex flex-row items-center justify-center gap-3 mb-11'>
-      <Link href='/shoppingCart' className='text-brand-orange font-light'>Carrinho</Link>
-      <Image src='/breadcrumb-icon-orange.svg' width={60} height={24} alt='' aria-hidden />
-      <Link
-        href=''
-        className={`${infoIsFilled ? ' text-brand-orange font-light'
-          : 'text-color-text font-semibold'} transition-all ease-linear duration-200`}
-        onClick={handleChangeFilledInfo}>Endereço</Link>
-      {
-        infoIsFilled ? (
-          <Image src='/breadcrumb-icon-orange.svg' width={60} height={24} alt='' aria-hidden />
-        ) : (
-          <Image src='/breadcrumb-icon-normal.svg' width={60} height={24} alt='' aria-hidden />
-        )
-      }
-      <span className={`${infoIsFilled ? 'text-color-text font-semibold'
-        : ' text-color-text font-light'} transition-all ease-linear duration-200`}>Pagamento</span>
-    </span>
+    <nav aria-label='Etapas'>
+      <ol className='flex flex-row flex-wrap  items-center md:justify-center gap-1 md:gap-3 mb-6 
+        md:mb-11 '>
+        <li className='flex flex-row gap-1 items-center'>
+          <Link href='/shoppingCart' className='text-brand-orange text-sm md:text-base'>
+            Carrinho
+          </Link>
+          <CaretRight />
+        </li>
+        <li className='flex flex-row gap-1 items-center'>
+          <Link
+            href=''
+            className={`${infoIsFilled ? ' text-brand-orange text-sm md:text-base'
+              : 'text-color-text font-semibold'} transition-all ease-linear duration-200`}
+            onClick={handleChangeFilledInfo}>
+            Endereço
+          </Link>
+          <CaretRight />
+        </li>
+        <li className='flex flex-row gap-1 items-center'>
+          <span className={`${infoIsFilled ? 'text-color-text font-semibold'
+            : ' text-color-text'} transition-all ease-linear duration-200
+        text-sm md:text-base`}>
+            Pagamento
+          </span>
+        </li>
+      </ol>
+    </nav>
   )
 }

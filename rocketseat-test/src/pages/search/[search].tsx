@@ -27,13 +27,15 @@ export default function Search({ products }: InferGetServerSidePropsType<typeof 
 
         {
           typeof products === undefined ? (
-            <div className="grid grid-cols-4 gap-x-14 gap-y-6 w-full">
+            <div className="grid grid-cols-2 w-screen gap-y-9 md:grid-cols-4 
+            md:gap-x-14 md:gap-y-6 md:w-full">
               {
                 fakeProductsArray.map(item => <ProductCardWithLoader key={item} />)
               }
             </div>
           ) : (
-            <div className="grid grid-cols-4 gap-x-14 gap-y-6 w-full">
+            <div className="grid grid-cols-2 w-screen gap-y-9 md:grid-cols-4 
+            md:gap-x-14 md:gap-y-6 md:w-full">
               {
                 products?.map((product) => (
                   <ProductCardWithLoader
@@ -48,7 +50,7 @@ export default function Search({ products }: InferGetServerSidePropsType<typeof 
             </div>
           )
         }
-        <div className="mt-[74px] -mb-8">
+        <div className="mt-3 md:mt-[74px] -mb-8">
           <PageNavigationButton array={numberButtonsArray} currentPage={currentPage} />
         </div>
       </div>

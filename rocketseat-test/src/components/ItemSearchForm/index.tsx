@@ -24,17 +24,21 @@ export const ItemSearchForm = () => {
         id="searchProduct"
         placeholder="Procurando por algo específico?"
         onChange={handleChange}
-        className={`${saira} font-saira placeholder-transparent text-color-text peer focus:outline-none focus:ring-1 focus:ring-brand-blue w-[352px] h-[42px] px-4 py-[10px] bg-[#F3F5F6] rounded-lg search-input`}
+        className={`${saira} font-saira placeholder-transparent text-color-text 
+          peer focus:outline-none focus:ring-1 focus:ring-brand-blue w-44 md:w-[22rem] 
+          h-[2.625rem] px-4 py-[.625rem] bg-[#F3F5F6] rounded-lg search-input`}
       />
       <label
         htmlFor="searchProduct"
-        className={`${saira} font-saira absolute transition-all top-3 left-3 text-color-text text-sm peer-placeholder-shown:flex peer-focus:hidden hidden`}
+        className={`${saira} font-saira absolute transition-all top-1 md:top-3 left-3 
+          text-color-text text-xs md:text-sm peer-placeholder-shown:flex
+          peer-focus:hidden hidden`}
       >
         Procurando por algo específico?
       </label>
       <button className='absolute top-2 right-3 border-none bg-transparent'>
         <MagnifyingGlass
-          className='w-6 h-6 text-color-text'
+          className='w-5 h-5 md:w-6 md:h-6 text-color-text'
           alt='buscar'
           onClick={() => handleSearch(searchValue)}
         />

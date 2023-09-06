@@ -27,7 +27,7 @@ export const PageNavigationButton = ({ array, currentPage }: PageNavigationButto
   }
 
   return (
-    <div className="flex items-center justify-end w-full gap-[2px] pb-8 pt-6">
+    <div className="flex items-center justify-end w-full gap-2 md:gap-[2px] pb-8 pt-6">
       {
         array.map((buttonNumber) => (
           <Link
@@ -43,7 +43,7 @@ export const PageNavigationButton = ({ array, currentPage }: PageNavigationButto
         ))
       }
 
-      <div className="flex flex-row gap-1 ml-1">
+      <div className="flex flex-row gap-1 ml-1 md:gap-1 md:ml-1">
         <button
           aria-label='voltar uma página'
           className={`${(currentPage !== '/' && currentPage !== '/?page=0') && (currentPage !== `/category/${category}` && currentPage !== `/category/${category}?page=0` && currentPage !== `/search/${search}` && currentPage !== `/search/${search}?page=0`) ? 'flex' : 'hidden '} items-center justify-center rounded-lg w-8 h-8 bg-[#E9E9F0] text-color-complement

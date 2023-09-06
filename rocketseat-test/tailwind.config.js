@@ -42,7 +42,7 @@ module.exports = {
       },
       fontFamily: {
         saira: ['var(--font-saira)', ...fontFamily.sans],
-        'saira-stencil-one': ['var(--font-saira_stencil)', ...fontFamily.sans]
+        'abril': ['var(--font-abril_Fatface)', ...fontFamily.sans]
       },
     },
   },

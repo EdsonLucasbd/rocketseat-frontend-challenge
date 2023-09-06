@@ -14,7 +14,7 @@ export const RadioGroup = ({ label, id, ...rest }: RadioGroupProps) => {
           before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-['']
           after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] 
           checked:border-brand-orange checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 
-          checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full 
+          checked:after:top-1/2 checked:after:h-2 checked:after:w-2 md:checked:after:h-[0.625rem] md:checked:after:w-[0.625rem] checked:after:rounded-full 
           checked:after:border-brand-orange checked:after:bg-brand-orange checked:after:content-[''] 
           checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] 
           hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:outline-none focus:ring-0 focus:before:scale-100 
