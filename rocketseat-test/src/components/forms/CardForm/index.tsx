@@ -67,9 +67,9 @@ export const CardForm = () => {
         className='flex flex-col gap-y-6'
       >
         <fieldset className='flex flex-col gap-1'>
-          <label className='text-color-title' htmlFor="cardNumber">Número do cartão</label>
+          <label className='text-color-title font-semibold' htmlFor="cardNumber">Número do cartão</label>
           <input
-            className='w-[23.4375rem] h-12 rounded-md p-3 bg-page-background/50 border 
+            className='w-full md:w-[23.4375rem] h-12 rounded-md p-3 bg-page-background/50 border 
           border-color-complement outline-none focus:border-brand-orange
           text-color-text'
             type="text"
@@ -86,9 +86,9 @@ export const CardForm = () => {
           }
         </fieldset>
         <fieldset className='flex flex-col gap-1'>
-          <label className='text-color-title' htmlFor="name">Nome do Titular</label>
+          <label className='text-color-title font-semibold' htmlFor="name">Nome do Titular</label>
           <input
-            className='w-[23.4375rem] h-12 rounded-md p-3 bg-page-background/50 border border-color-complement 
+            className='w-full md:w-[23.4375rem] h-12 rounded-md p-3 bg-page-background/50 border border-color-complement 
         outline-none focus:border-brand-orange text-color-text'
             type="text"
             id="name"
@@ -105,9 +105,9 @@ export const CardForm = () => {
 
         <div className="flex flex-row gap-4">
           <fieldset className='flex flex-col gap-1'>
-            <label className='text-color-title' htmlFor="validity">Validade</label>
+            <label className='text-color-title font-semibold' htmlFor="validity">Validade</label>
             <input
-              className='w-[13.125rem] h-12 rounded-md p-3 bg-page-background/50 border border-color-complement 
+              className='w-full md:w-[13.125rem] h-12 rounded-md p-3 bg-page-background/50 border border-color-complement 
           outline-none focus:border-brand-orange text-color-text'
               type="text"
               id="validity"
@@ -124,9 +124,9 @@ export const CardForm = () => {
           </fieldset>
 
           <fieldset className='flex flex-col gap-1'>
-            <label className='text-color-title' htmlFor="cvv">CVV</label>
+            <label className='text-color-title font-semibold' htmlFor="cvv">CVV</label>
             <input
-              className='w-[9.375rem] h-12 rounded-md p-3 bg-page-background/50 
+              className='w-full md:w-[9.375rem] h-12 rounded-md p-3 bg-page-background/50 
                 border border-color-complement outline-none 
                 focus:border-brand-orange text-color-text'
               type="text"

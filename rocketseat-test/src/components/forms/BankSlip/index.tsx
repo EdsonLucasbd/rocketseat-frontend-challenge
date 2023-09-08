@@ -6,8 +6,8 @@ interface BankSlipProps {
 
 export const BankSlip = ({ value }: BankSlipProps) => {
   return (
-    <div className='flex flex-col items-center gap-4 p-6 bg-page-background rounded-lg 
-      border w-[23.4375rem]'
+    <div className='flex flex-col gap-4 p-3 md:p-6 bg-page-background rounded-lg 
+      border w-full md:w-[23.4375rem]'
     >
       <p className='font-medium text-color-text text-start'>Informações sobre o pagamento via boleto:</p>
       <div className='list-disc'>

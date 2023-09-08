@@ -9,7 +9,7 @@ export const RadioGroup = ({ label, id, ...rest }: RadioGroupProps) => {
   return (
     <div className='flex flex-row gap-2'>
       <input
-        className="relative float-left h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-400
+        className="relative float-left h-4 w-4 md:h-5 md:w-5 appearance-none rounded-full border-2 border-solid border-neutral-400
           before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full
           before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-['']
           after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] 
@@ -26,7 +26,7 @@ export const RadioGroup = ({ label, id, ...rest }: RadioGroupProps) => {
         name="payment"
         {...rest}
         id={id} />
-      <label htmlFor={id} className="text-color-text cursor-pointer peer-checked:text-brand-orange">{label}</label>
+      <label htmlFor={id} className="text-sm md:text-base text-color-text cursor-pointer peer-checked:text-brand-orange">{label}</label>
     </div>
   )
 }

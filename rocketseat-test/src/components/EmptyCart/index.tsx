@@ -13,7 +13,7 @@ export const EmptyCart = () => {
         className='opacity-50'
       />
       <p className='font-semibold text-xl text-color-text'>Seu carrinho está vazio</p>
-      <Link href='/' className="flex items-center justify-center gap-3 w-1/2 h-11 rounded text-background bg-brand-blue
+      <Link href='/' className="flex items-center justify-center gap-3 w-full md:w-1/2 h-11 rounded text-background bg-brand-blue
       hover:bg-brand-blue/90"
       >
         <ShoppingBagOpen className="w-6 h-6" />

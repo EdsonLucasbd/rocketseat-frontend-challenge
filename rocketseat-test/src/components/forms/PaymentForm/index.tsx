@@ -15,7 +15,7 @@ export const PaymentForm = ({ method, setMethod }: PaymentFormProps) => {
     <>
       <form defaultValue={method} className='flex flex-col gap-4 mb-6'>
         <label htmlFor="payment-methods" className='text-color-text text-lg font-medium'>Pague com:</label>
-        <fieldset id='payment-methods' className='flex flex-row gap-5'>
+        <fieldset id='payment-methods' className='flex flex-row gap-2 md:gap-5'>
           <RadioGroup
             label='Cartão de crédito'
             value='card'

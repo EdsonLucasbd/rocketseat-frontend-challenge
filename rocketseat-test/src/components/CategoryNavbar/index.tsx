@@ -1,3 +1,4 @@
+import { Ref, forwardRef } from 'react'
 import { saira } from '@/utils/fonts';
 import { Menu, Transition } from '@headlessui/react';
 import { CaretDown } from '@phosphor-icons/react';
@@ -13,7 +14,8 @@ interface ISortLink {
   className: string
 }
 
-const SortLink = ({ sortField, sortOrder, title, className }: ISortLink) => {
+const SortLink = forwardRef((props: ISortLink, ref: Ref<HTMLAnchorElement>) => {
+  const { sortField, sortOrder, title, className } = props
   const router = useRouter();
   const currentUrl = router.asPath.split('?')[0]
   const queryParams = queryString.parse(router.asPath.split('?')[1] || '')
@@ -30,7 +32,7 @@ const SortLink = ({ sortField, sortOrder, title, className }: ISortLink) => {
       {title}
     </Link>
   );
-}
+})
 
 export const CategoryNav = () => {
   const router = useRouter()
@@ -83,7 +85,7 @@ export const CategoryNav = () => {
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <Menu.Items className="absolute right-0 mt-1 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+            <Menu.Items className="absolute z-10 right-0 mt-1 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
               <div className="px-4 py-3">
                 {links.map((link) => (
                   <Menu.Item key={link.label}>
