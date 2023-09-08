@@ -24,10 +24,10 @@ export const PageNavigationButton = ({ array, currentPage }: PageNavigationButto
       `${sortField !== '' ? `&sortField=${sortField}&sortOrder=${sortOrder}` : ''}`)
   }
 
-  function checkPage(btnNumber: number) {
-    const categoryCase = (currentPage === `/category/${category}` && btnNumber === 0)
-    const searchCase = currentPage === `/search/${search}` && btnNumber === 0
-    const homeCase = currentPage === '/' && btnNumber === 0
+  function checkPage() {
+    const categoryCase = currentPage === `/category/${category}` && `/category/${category}`
+    const searchCase = currentPage === `/search/${search}` && `/search/${search}`
+    const homeCase = currentPage === '/' && '/'
 
     return categoryCase || searchCase || homeCase
   }

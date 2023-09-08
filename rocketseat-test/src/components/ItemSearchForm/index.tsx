@@ -16,6 +16,13 @@ export const ItemSearchForm = () => {
     setSearchValue(value)
   }
 
+  function handleSearchByEnter(event: React.KeyboardEvent<HTMLInputElement>) {
+    const key = event.key
+    if (key === 'Enter') {
+      router.push(`/search/${searchValue}`)
+    }
+  }
+
   return (
     <div className='relative flex justify-between gap-4'>
       <input
@@ -24,6 +31,7 @@ export const ItemSearchForm = () => {
         id="searchProduct"
         placeholder="Procurando por algo específico?"
         onChange={handleChange}
+        onKeyDown={handleSearchByEnter}
         className={`${saira} font-saira placeholder-transparent text-color-text 
           peer focus:outline-none focus:ring-1 focus:ring-brand-blue w-44 md:w-[22rem] 
           h-[2.625rem] px-4 py-[.625rem] bg-[#F3F5F6] rounded-lg search-input`}
