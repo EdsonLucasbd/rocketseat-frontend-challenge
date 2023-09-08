@@ -14,6 +14,7 @@ interface ISortLink {
   className: string
 }
 
+// eslint-disable-next-line react/display-name
 const SortLink = forwardRef((props: ISortLink, ref: Ref<HTMLAnchorElement>) => {
   const { sortField, sortOrder, title, className } = props
   const router = useRouter();
