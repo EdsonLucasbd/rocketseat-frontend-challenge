@@ -7,7 +7,7 @@ interface SkeletonLoaderProps extends React.HTMLAttributes<HTMLDivElement> {
 export const SkeletonLoader = ({ className, ...rest }: SkeletonLoaderProps) => {
   return (
     <div
-      className={`${className} bg-gray-300 rounded-lg animate-pulse`}
+      className={`${className} flex bg-gray-300 rounded-lg animate-pulse`}
       {...rest}
     />
   )

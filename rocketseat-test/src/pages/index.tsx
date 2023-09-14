@@ -8,7 +8,6 @@ import { GetAllProducts } from "@/graphql/queries";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { Suspense } from "react";
 
 export default function Home({ products, totalItems, pageInfo }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const TOTAL_PRODUCTS = products.length > 0 ? totalItems : 0
@@ -37,7 +36,7 @@ export default function Home({ products, totalItems, pageInfo }: InferGetServerS
             <div className="grid grid-cols-2 w-screen gap-y-9 md:grid-cols-4 
               md:gap-x-14 md:gap-y-6 md:w-full">
               {
-                fakeProductsArray.map(item => <ProductLayout key={item} />)
+                fakeProductsArray.map(item => <ProductSkeletonLoader key={item} />)
               }
             </div>
           )
@@ -46,14 +45,13 @@ export default function Home({ products, totalItems, pageInfo }: InferGetServerS
               md:gap-x-14 md:gap-y-6 md:w-full">
                 {
                   products?.map(({ node: product }) => (
-                    <Suspense fallback={<ProductSkeletonLoader />} key={product?.id}>
-                      <ProductLayout
-                        image={product?.images[0].url}
-                        title={product?.name}
-                        price={product?.price}
-                        id={product?.id}
-                      />
-                    </Suspense>
+                    <ProductLayout
+                      key={product?.id}
+                      image={product?.images[0].url}
+                      title={product?.name}
+                      price={product?.price}
+                      id={product?.id}
+                    />
                   ))
                 }
               </div>
@@ -104,5 +102,6 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
       },
     };
   }
+
 
 }

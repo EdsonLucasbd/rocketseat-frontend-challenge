@@ -6,7 +6,7 @@ import { ArrowCircleLeft, ShoppingBagOpen } from "@phosphor-icons/react";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { Suspense, useContext } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "../../../context/CartContext";
 import Head from "next/head";
 import { SkeletonLoader } from "@/components/SkeletonLoader";
@@ -21,6 +21,7 @@ export interface IStoredItem {
 }
 
 export default function Product({ product }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const [isLoading, setIsLoading] = useState(true)
   const router = useRouter()
   const translatedCategoryName = product?.categories[0].name === 't-shirts' ? 'Camiseta' : 'Caneca'
   const price = Number(convertProductPrice(product?.price))
@@ -48,7 +49,7 @@ export default function Product({ product }: InferGetServerSidePropsType<typeof 
           Voltar
         </button>
         {product &&
-          <div className="flex flex-col md:flex-row h-full md:h-[580px]">
+          <div className="relative flex flex-col md:flex-row h-full md:h-[580px]">
             <Image
               priority
               src={product.images[0].url}
@@ -56,7 +57,10 @@ export default function Product({ product }: InferGetServerSidePropsType<typeof 
               width={640}
               height={580}
               className="flex flex-1 w-full max-w-[640px] h-full max-h-[580px] rounded"
+              onLoadingComplete={() => setIsLoading(false)}
             />
+
+            {isLoading && <SkeletonLoader className="absolute left-0 w-full max-w-[640px] h-[280px] max-h-[580px]" />}
 
             <div className="flex flex-col gap-2 mt-8 md:mt-0 md:ml-8 max-w-[448px]">
               <p className="mb-3 text-base text-[#41414D]">{translatedCategoryName}</p>

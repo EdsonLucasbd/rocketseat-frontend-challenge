@@ -64,7 +64,7 @@ export const SearchProducts = gql`
     first: 12
     orderBy: $orderBy
     skip: $skip
-    where: {_search: $_search}
+    where: {_search: $_search, name_contains: $_search}
   ) {
     edges {
       node {

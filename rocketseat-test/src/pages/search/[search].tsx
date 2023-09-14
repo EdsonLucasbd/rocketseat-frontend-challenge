@@ -7,8 +7,7 @@ import { SearchProductsQuery } from "@/graphql/generate/graphql";
 import { SearchProducts } from "@/graphql/queries";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
-import { Suspense } from 'react';
-import { ProductSkeletonLoader } from '@/components/ProductSkeletonLoader';
+import { SmileySad } from '@phosphor-icons/react';
 
 export default function Search({ products, pageInfo, totalItems }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const TOTAL_PRODUCTS = products.length > 0 ? totalItems : 0
@@ -16,6 +15,7 @@ export default function Search({ products, pageInfo, totalItems }: InferGetServe
   const numberButtonsArray = Array.from({ length: Math.ceil(TOTAL_PRODUCTS! / 12) }, (_, index) => index++)
   const router = useRouter()
   const currentPage = router.asPath
+  const { search } = router.query
 
   return (
     <>
@@ -33,6 +33,19 @@ export default function Search({ products, pageInfo, totalItems }: InferGetServe
         />
 
         {
+          products.length === 0 && (
+            <div className='flex flex-col items-center justify-center my-[50%] 
+              h-max w-full md:h-full md:my-[10%] space-y-8'>
+              <h2 className='text-2xl md:text-4xl gap-y-1 flex flex-col
+                items-center justify-center md:flex-row md:gap-x-3 text-color-title'>
+                Nenhum resultado para <span className='text-brand-orange font-semibold text-3xl md:text-5xl'>&ldquo;{search}&rdquo;</span>
+                <SmileySad className='text-color-title text-4xl md:text-6xl' /></h2>
+              <p className='text-color-title text-center text-sm md:text-lg'>Se você não encontrou o que procurava, tente novamente.</p>
+            </div>
+          )
+        }
+
+        {
           typeof products === undefined ? (
             <div className="grid grid-cols-2 w-screen gap-y-9 md:grid-cols-4 
             md:gap-x-14 md:gap-y-6 md:w-full">
@@ -45,14 +58,13 @@ export default function Search({ products, pageInfo, totalItems }: InferGetServe
             md:gap-x-14 md:gap-y-6 md:w-full">
               {
                 products?.map(({ node: product }) => (
-                  <Suspense fallback={<ProductSkeletonLoader />} key={product?.id}>
-                    <ProductLayout
-                      image={product?.images[0].url}
-                      title={product?.name}
-                      price={product?.price}
-                      id={product?.id}
-                    />
-                  </Suspense>
+                  <ProductLayout
+                    key={product?.id}
+                    image={product?.images[0].url}
+                    title={product?.name}
+                    price={product?.price}
+                    id={product?.id}
+                  />
                 ))
               }
             </div>
