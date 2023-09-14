@@ -1,3 +1,5 @@
+import { ProductSkeletonLoader } from '@/components/ProductSkeletonLoader';
+import { SkeletonLoader } from '@/components/SkeletonLoader';
 import { IStoredItem } from '@/pages/product/[id]';
 import localforage from 'localforage';
 import { useRouter } from 'next/router';
@@ -44,6 +46,8 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
   const [isLoading, setIsLoading] = useState(true)
 
+  const fakeProductsArray = Array.from({ length: 4 }, (_, index) => index + 1)
+
   useEffect(() => {
     async function loadCartFromStorage() {
       try {
@@ -51,10 +55,8 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
         const amount = await localforage.getItem<number>('total');
         if (cart && amount !== null) {
           setCartData({ cart, amount });
-          setIsLoading(false);
-        } else {
-          setIsLoading(true);
         }
+        setIsLoading(false);
       } catch (error) {
         console.error('Error loading cart from storage:', error);
         setIsLoading(true);
@@ -138,10 +140,17 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   }
 
   if (isLoading) {
-    return <div className='flex h-full w-full text-3xl text-center items-center 
-    justify-center text-brand-blue font-medium'
+    return <div className='relative flex flex-col h-screen w-full items-center 
+    justify-center px-7 md:px-40 py-[3.75rem] bg-black'
     >
-      Carregando dados...
+      <SkeletonLoader className='absolute top-0 w-full h-20' />
+
+      <div className="ml-2 md:ml-0 grid grid-cols-2 w-full gap-y-9 md:grid-cols-4 
+              md:gap-x-14 md:gap-y-6">
+        {
+          fakeProductsArray.map(item => <ProductSkeletonLoader key={item} />)
+        }
+      </div>
     </div>;
   }
 
