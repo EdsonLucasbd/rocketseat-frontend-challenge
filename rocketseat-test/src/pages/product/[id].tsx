@@ -6,9 +6,10 @@ import { ArrowCircleLeft, ShoppingBagOpen } from "@phosphor-icons/react";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useContext } from "react";
+import { Suspense, useContext } from "react";
 import { CartContext } from "../../../context/CartContext";
 import Head from "next/head";
+import { SkeletonLoader } from "@/components/SkeletonLoader";
 
 export interface IStoredItem {
   name: string,
@@ -21,8 +22,8 @@ export interface IStoredItem {
 
 export default function Product({ product }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const router = useRouter()
-  const translatedCategoryName = product?.category === 't-shirts' ? 'Camiseta' : 'Caneca'
-  const price = Number(convertProductPrice(product?.price_in_cents))
+  const translatedCategoryName = product?.categories[0].name === 't-shirts' ? 'Camiseta' : 'Caneca'
+  const price = Number(convertProductPrice(product?.price))
 
   const { addItemToCart } = useContext(CartContext)
 
@@ -50,12 +51,13 @@ export default function Product({ product }: InferGetServerSidePropsType<typeof 
           <div className="flex flex-col md:flex-row h-full md:h-[580px]">
             <Image
               priority
-              src={product?.image_url}
+              src={product.images[0].url}
               alt={`Foto do produto ${product?.name}`}
               width={640}
               height={580}
               className="flex flex-1 w-full max-w-[640px] h-full max-h-[580px] rounded"
             />
+
             <div className="flex flex-col gap-2 mt-8 md:mt-0 md:ml-8 max-w-[448px]">
               <p className="mb-3 text-base text-[#41414D]">{translatedCategoryName}</p>
               <p className="mb-1 font-light text-[32px] text-[#41414D]">{product.name}</p>
@@ -66,7 +68,7 @@ export default function Product({ product }: InferGetServerSidePropsType<typeof 
                 <p className="text-sm text-[#41414D]">{product.description}</p>
               </div>
               <button
-                onClick={() => setProductInBag({ name: product.name, id: product.id, price, description: product.description, image_url: product.image_url, quantity: 1 })}
+                onClick={() => setProductInBag({ name: product.name, id: product.id, price, description: product.description, image_url: product.images[0].url, quantity: 1 })}
                 className="flex items-center justify-center gap-3 w-full h-11 rounded text-background bg-brand-blue
               hover:bg-brand-blue/90">
                 <ShoppingBagOpen className="w-6 h-6" />
@@ -86,16 +88,16 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
   const { query } = context
   const id = query.id
   try {
-    const { data } = await client.query<ProductQuery>({
-      query: GetProduct,
-      variables: {
+    const { product } = await client.request<ProductQuery>(
+      GetProduct,
+      {
         id
       }
-    })
+    )
 
     return {
       props: {
-        product: data.Product
+        product: product
       }
     }
   } catch (error) {

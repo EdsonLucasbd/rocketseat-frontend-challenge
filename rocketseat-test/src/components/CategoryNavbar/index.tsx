@@ -9,21 +9,19 @@ import { Fragment } from 'react';
 
 interface ISortLink {
   sortField: string
-  sortOrder: string
   title: string
   className: string
 }
 
 // eslint-disable-next-line react/display-name
 const SortLink = forwardRef((props: ISortLink, ref: Ref<HTMLAnchorElement>) => {
-  const { sortField, sortOrder, title, className } = props
+  const { sortField, title, className } = props
   const router = useRouter();
   const currentUrl = router.asPath.split('?')[0]
   const queryParams = queryString.parse(router.asPath.split('?')[1] || '')
   const newQueryParams = {
     ...queryParams,
     sortField,
-    sortOrder,
   };
   const newQueryString = queryString.stringify(newQueryParams)
   const newUrl = `${currentUrl}?${newQueryString}`
@@ -41,10 +39,10 @@ export const CategoryNav = () => {
   const { search = '' } = router.query || {}
 
   const links = [
-    { href: currentPage, sortField: 'created_at', sortOrder: 'desc', label: 'Novidades' },
-    { href: currentPage, sortField: 'price_in_cents', sortOrder: 'desc', label: 'Preço: Maior - menor' },
-    { href: currentPage, sortField: 'price_in_cents', sortOrder: 'asc', label: 'Preço: Menor - maior' },
-    { href: currentPage, sortField: 'sales', sortOrder: 'desc', label: 'Mais vendidos' },
+    { href: currentPage, sortField: 'createdAt_DESC', label: 'Novidades' },
+    { href: currentPage, sortField: 'price_DESC', label: 'Preço: Maior - menor' },
+    { href: currentPage, sortField: 'price_ASC', label: 'Preço: Menor - maior' },
+    { href: currentPage, sortField: 'sales_DESC', label: 'Mais vendidos' },
   ]
 
   return (
@@ -93,10 +91,9 @@ export const CategoryNav = () => {
                     {({ active }) => (
                       <SortLink
                         sortField={link.sortField}
-                        sortOrder={link.sortOrder}
                         title={link.label}
                         className={`${active ? 'bg-texts-title text-white' : 'bg-white text-color-text'
-                          } ${(router.query.sortField === link.sortField && router.query.sortOrder === link.sortOrder) ? 'ring-1 ring-color-title' : ''} group hover:bg-color-title hover:text-white flex w-full items-center rounded-md px-2 py-2 my-2 text-sm`}
+                          } ${(router.query.sortField === link.sortField) ? 'ring-1 ring-color-title' : ''} group hover:bg-color-title hover:text-white flex w-full items-center rounded-md px-2 py-2 my-2 text-sm`}
                       />
                     )}
                   </Menu.Item>

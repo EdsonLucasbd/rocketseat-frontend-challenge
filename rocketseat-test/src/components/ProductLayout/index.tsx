@@ -13,18 +13,7 @@ export const convertProductPrice = (price: number | undefined) => {
   return ((price ?? 0) / 100.00).toFixed(2)
 }
 
-const ProductSkeletonLoader = () => {
-  return (
-    <div className="flex flex-col w-32 h-[189px] md:w-64 md:h-[378px] 
-      bg-white/40 rounded-lg animate-pulse">
-      <div className="w-32 h-[189px] md:w-64 md:h-[300px] rounded-t-lg bg-gray-300"></div>
-      <div className="h-6 mt-4 rounded-full bg-gray-300"></div>
-      <div className="h-4 mt-2 rounded-full bg-gray-300"></div>
-    </div>
-  );
-};
-
-const ProductLayout = ({ image, price, title, id }: ProductProps) => {
+export const ProductLayout = ({ image, price, title, id }: ProductProps) => {
   const productPrice = convertProductPrice(price)
   return (
     <Link
@@ -50,10 +39,10 @@ const ProductLayout = ({ image, price, title, id }: ProductProps) => {
   );
 }
 
-export const ProductCardWithLoader = (props: ProductProps) => {
-  const { image, title, price, id } = props
+// export const ProductCard = (props: ProductProps) => {
+//   const { image, title, price, id } = props
 
-  const isLoading = !image || !title || !price || !id;
+//   const isLoading = !image || !title || !price || !id;
 
-  return isLoading ? <ProductSkeletonLoader /> : <ProductLayout  {...props} />;
-}
+//   return isLoading ? <ProductSkeletonLoader /> : <ProductLayout  {...props} />;
+// }

@@ -2,13 +2,13 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['storage.googleapis.com'],
+    domains: ['media.graphassets.com'],
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'storage.googleapis.com',
+        hostname: 'media.graphassets.com',
         port: '',
-        pathname: '/xesque-dev/challenge-images/**'
+        pathname: '/**'
       },
       {
         protocol: 'https',

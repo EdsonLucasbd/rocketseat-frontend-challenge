@@ -11,7 +11,6 @@
     "codegen": "graphql-codegen"
   },
   "dependencies": {
-    "@apollo/client": "^3.7.11",
     "@headlessui/react": "^1.7.14",
     "@hookform/resolvers": "^3.2.0",
     "@phosphor-icons/react": "^2.0.8",
@@ -23,6 +22,7 @@
     "eslint": "8.38.0",
     "eslint-config-next": "13.3.0",
     "graphql": "^16.6.0",
+    "graphql-request": "^6.1.0",
     "localforage": "^1.10.0",
     "next": "13.3.0",
     "nextjs-progressbar": "^0.0.16",

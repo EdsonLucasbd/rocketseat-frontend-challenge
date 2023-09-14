@@ -1,9 +1,5 @@
-import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { GraphQLClient } from 'graphql-request';
 
-const baseUrl = process.env.NEXT_PUBLIC_API_URL
-
-export const client = new ApolloClient({
-  ssrMode: typeof window === 'undefined',
-  uri: `${baseUrl}:3333/graphql`,
-  cache: new InMemoryCache(),
-});
+export const client = new GraphQLClient(
+  'https://sa-east-1.cdn.hygraph.com/content/clmevqucb04mu01tf3fztg9ak/master',
+);

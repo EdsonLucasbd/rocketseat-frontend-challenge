@@ -1,31 +1,98 @@
-import { gql } from "@apollo/client";
+import { gql } from "graphql-request";
 
 export const GetAllProducts = gql`
-  query AllProducts($page: Int, $perPage: Int, $sortField: String, $sortOrder: String, $filter: ProductFilter) {
-  allProducts(page: $page, perPage: $perPage, sortField: $sortField, sortOrder: $sortOrder, filter: $filter) {
-      id
-      name
-      description
-      image_url
-      category
-      price_in_cents
-      sales
-      created_at
+  query Products($orderBy: ProductOrderByInput = publishedAt_DESC, $skip: Int, $slug: String = "") {
+  productsConnection(
+    first: 12
+    orderBy: $orderBy
+    skip: $skip
+    where: {categories_some: {slug: $slug}}
+  ) {
+    edges {
+      node {
+        categories {
+          name
+        }
+        id
+        name
+        description
+        images {
+          url
+        }
+        price
+        slug
+        createdAt
+        sales
+      }
+    }
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+      pageSize
+      startCursor
+      endCursor
+    }
+    aggregate {
+      count
     }
   }
+}
 `
 
 export const GetProduct = gql `
-  query Product($id: ID!) {
-    Product(id: $id) {
-      id
+  query Product($id: ID = "") {
+  product(where: {id: $id}) {
+    id
+    name
+    description
+    images {
+      url
+      createdAt
+    }
+    price
+    slug
+    categories {
       name
-      description
-      image_url
-      category
-      price_in_cents
-      sales
-      created_at
     }
   }
+}
+`
+
+export const SearchProducts = gql`
+  query SearchProducts($skip: Int, $orderBy: ProductOrderByInput = publishedAt_DESC, $_search: String = "") {
+  productsConnection(
+    first: 12
+    orderBy: $orderBy
+    skip: $skip
+    where: {_search: $_search}
+  ) {
+    edges {
+      node {
+        categories {
+          name
+        }
+        id
+        name
+        description
+        images {
+          url
+        }
+        price
+        slug
+        createdAt
+        sales
+      }
+    }
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+      pageSize
+      startCursor
+      endCursor
+    }
+    aggregate {
+      count
+    }
+  }
+}
 `

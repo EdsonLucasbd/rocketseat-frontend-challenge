@@ -5,24 +5,47 @@ import { useRouter } from "next/router";
 interface PageNavigationButtonProps {
   array: number[],
   currentPage: string
+  hasNext: boolean | undefined
+  hasPrevious: boolean | undefined
 }
 
-export const PageNavigationButton = ({ array, currentPage }: PageNavigationButtonProps) => {
+export const PageNavigationButton = ({ array, hasNext, hasPrevious }: PageNavigationButtonProps) => {
   const router = useRouter()
   const { category = '' } = router.query || {}
   const { search = '' } = router.query || {}
   const { sortField = '' } = router.query || {}
-  const { sortOrder = '' } = router.query || {}
   const { page = '' } = router.query || {}
 
-  console.log('page', page)
+  function checkQueryStrings(pageNum?: number) {
+    const queryParams = [];
+
+    if (pageNum !== undefined) {
+      queryParams.push(`page=${pageNum}`);
+    }
+    if (category !== '') {
+      queryParams.push(`category=${category}`);
+    }
+    if (search !== '') {
+      queryParams.push(`search=${search}`);
+    }
+    if (sortField !== '') {
+      queryParams.push(`sortField=${sortField}`);
+    }
+
+    return queryParams.length > 0 ? `?${queryParams.join('&')}` : '';
+  }
 
   function goToNextPage() {
     let initial_page = router.query.page ?? 0
 
     router.push(`${category !== '' ? category : search}?page=${Number(initial_page) + 1}` +
-      `${sortField !== '' ? `&sortField=${sortField}&sortOrder=${sortOrder}` : ''}`)
+      `${sortField !== '' ? `&sortField=${sortField}` : ''}`)
   }
+
+  const goToPreviousPage = () => {
+    router.push(`${category !== '' ? category : search}?page=${Number(page) - 1}` +
+      `${sortField !== '' ? `&sortField=${sortField}` : ''}`);
+  };
 
   const isCurrent = (btnNumber: number) => {
     return (
@@ -39,8 +62,7 @@ export const PageNavigationButton = ({ array, currentPage }: PageNavigationButto
             key={buttonNumber}
             data-current={isCurrent(buttonNumber)}
             data-position={buttonNumber}
-            href={`${category !== '' ? category : search}?page=${buttonNumber}
-            ${sortField !== '' ? `&sortField=${sortField}&sortOrder=${sortOrder}` : ''}`}
+            href={checkQueryStrings(buttonNumber)}
             aria-label={`acessar a página ${buttonNumber + 1}`}
             className={`flex items-center justify-center rounded-lg w-8 h-8 
                 data-[current=true]:bg-background data-[current=true]:text-others-orange_low 
@@ -59,8 +81,8 @@ export const PageNavigationButton = ({ array, currentPage }: PageNavigationButto
             hover:bg-shapes-02 flex
             disabled:opacity-75 disabled:cursor-not-allowed 
             disabled:hover:bg-[#E9E9F0] `}
-        onClick={router.back}
-        disabled={page === '0' || page === ''}
+        onClick={goToPreviousPage}
+        disabled={!hasPrevious}
       >
         <CaretLeft />
       </button>
@@ -70,8 +92,8 @@ export const PageNavigationButton = ({ array, currentPage }: PageNavigationButto
             bg-[#E9E9F0] text-color-complement hover:bg-shapes-02 
             flex disabled:opacity-75 disabled:cursor-not-allowed 
             disabled:hover:bg-[#E9E9F0]`}
-        disabled={router.query.page === `${array.length - 1}`}
         onClick={goToNextPage}
+        disabled={!hasNext}
       >
         <CaretRight />
       </button>

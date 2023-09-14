@@ -23,6 +23,7 @@ export const CheckoutPanel = () => {
     const amount = getTotal()
     setItems(storedItens)
     setAmount(amount)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

@@ -1,11 +1,9 @@
 
 import type { CodegenConfig } from '@graphql-codegen/cli';
 
-const baseUrl = process.env.NEXT_PUBLIC_API_URL
-
 const config: CodegenConfig = {
   overwrite: true,
-  schema: `${baseUrl}:3333/graphql`,
+  schema: 'https://sa-east-1.cdn.hygraph.com/content/clmevqucb04mu01tf3fztg9ak/master',
   documents: "src/graphql/queries.ts",
   ignoreNoDocuments: true,
   generates: {
