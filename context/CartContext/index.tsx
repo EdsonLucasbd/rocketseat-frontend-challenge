@@ -138,8 +138,11 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   }
 
   if (isLoading) {
-    // Pode ser exibida uma mensagem de carregando ou algum indicador de que os dados estão sendo buscados.
-    return <div>Loading...</div>;
+    return <div className='flex h-full w-full text-3xl text-center items-center 
+    justify-center text-brand-blue font-medium'
+    >
+      Carregando dados...
+    </div>;
   }
 
   return (
