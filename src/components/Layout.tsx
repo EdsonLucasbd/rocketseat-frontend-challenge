@@ -1,6 +1,7 @@
 import { saira, abril } from '@/utils/fonts';
 import { ShoppingBagOpen } from '@phosphor-icons/react';
 import Link from 'next/link';
+import Image from 'next/image'
 import { useRouter } from 'next/router';
 import { useContext, useEffect, useState } from 'react';
 import { CartContext } from '../../context/CartContext';
@@ -23,10 +24,9 @@ const Header = ({ children }: { children: React.ReactNode }) => {
         <Link
           href={'/'}
           aria-label='voltar para a página inicial'
-          className={`${abril} font-saira-stencil-one text-color-text text-2xl 
-            md:text-[2.5rem] leading-5 md:leading-normal`}
+          className={`${router.asPath === '/' ? 'pointer-events-none' : ''}`}
         >
-          E.L store
+          <Image src='/logo.png' aria-hidden width={155} height={65} alt='' />
         </Link>
         <div className='flex flex-row gap-6'>
           <ItemSearchForm />
