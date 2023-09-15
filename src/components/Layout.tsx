@@ -1,4 +1,4 @@
-import { saira, abril } from '@/utils/fonts';
+import { saira, k2dFont } from '@/utils/fonts';
 import { ShoppingBagOpen } from '@phosphor-icons/react';
 import Link from 'next/link';
 import Image from 'next/image'
@@ -24,9 +24,17 @@ const Header = ({ children }: { children: React.ReactNode }) => {
         <Link
           href={'/'}
           aria-label='voltar para a página inicial'
-          className={`${router.asPath === '/' ? 'pointer-events-none' : ''}`}
+          className={`${(router.asPath === '/' || router.asPath === '/?page=0') ? 'pointer-events-none' : ''} flex space-x-2 items-center`}
         >
-          <Image src='/logo.png' aria-hidden width={155} height={65} alt='' />
+          <Image
+            src='/logo.png'
+            aria-hidden
+            width={188}
+            height={163}
+            alt=''
+            className=''
+          />
+          <p className={`${k2dFont} text-3xl text-brand-blue hidden md:flex`}>Store</p>
         </Link>
         <div className='flex flex-row gap-6'>
           <ItemSearchForm />
@@ -42,7 +50,7 @@ const Header = ({ children }: { children: React.ReactNode }) => {
           </span>
         </div>
       </header>
-      <main className={`${saira} font-saira w-full h-full bg-page-background 
+      <main className={`${saira} font-saira w-full h-screen md:h-full bg-page-background 
         px-7 md:px-40 pb-[3.75rem] overflow-x-hidden`}>
         {children}
       </main>

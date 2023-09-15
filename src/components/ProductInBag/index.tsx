@@ -19,7 +19,7 @@ export const ProductInBag = ({ id, image, title, description, value, quantity, d
 
   return (
     <div className="flex flex-col md:flex-row w-full h-auto md:h-[13.1875rem] 
-      max-w-[46rem] shadow-md">
+      max-w-[46rem] shadow-md animate-fade-in-left">
       <Image
         src={image}
         alt=''

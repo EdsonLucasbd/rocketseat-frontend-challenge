@@ -31,7 +31,8 @@ export const ProductLayout = ({ image, price, title, id }: ProductProps) => {
 
       <Link
         className="flex flex-col w-32 h-[200px] md:w-64 md:h-[378px] hover:shadow-lg 
-        hover:scale-105 rounded-lg duration-200 transition-all ease-in-out"
+        hover:scale-105 rounded-lg duration-200 transition-all ease-in-out
+        animate-fade-in-bottom"
         href={`/product/${id}`}
       >
         <Image
@@ -39,7 +40,7 @@ export const ProductLayout = ({ image, price, title, id }: ProductProps) => {
           width={256}
           height={300}
           alt={`${title}`}
-          className="h-[300px] rounded-t-lg"
+          className="h-[300px] rounded-t-lg object-fill"
           aria-hidden
           onLoadingComplete={handleImageLoad}
         />

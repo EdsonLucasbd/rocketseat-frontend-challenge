@@ -1,4 +1,4 @@
-import { Saira, Saira_Stencil_One, Abril_Fatface } from 'next/font/google'
+import { Saira, Saira_Stencil_One, K2D } from 'next/font/google'
 
 const saira_normal = Saira({ 
   weight: ['300', '400', '500', '600'],
@@ -14,14 +14,12 @@ const saira_stencil = Saira_Stencil_One({
   display: 'swap'
 })
 
-const abril_Fatface = Abril_Fatface({
-  weight: '400',
+const k2d = K2D({
+  weight: ['400'],
   subsets: ['latin'],
-  variable: '--font-abril_Fatface',
-  
-  style: 'normal',
-  display: 'auto'
+  variable: '--font-k2d',
+  display: 'swap'
 })
 
 export const saira = saira_normal.variable
-export const abril = abril_Fatface.className
+export const k2dFont = k2d.className

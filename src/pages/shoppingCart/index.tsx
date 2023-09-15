@@ -39,10 +39,12 @@ export default function ShoppingCart() {
 
   useEffect(() => {
     getItems()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
     getItems()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [removedItems, handleSelect])
 
   return (
@@ -85,7 +87,8 @@ export default function ShoppingCart() {
               }
             </div>
           </div>
-          <div className="md:fixed flex flex-col w-full md:w-[352px] min-h-[500px] right-40 bg-background px-6 pt-4 pb-6 shadow-md">
+          <div className="md:fixed flex flex-col w-full md:w-[352px] min-h-[500px] 
+            right-40 bg-background px-6 pt-4 pb-6 shadow-md animate-fade-in-right">
             <p className="font-semibold text-xl text-color-text">Resumo do pedido</p>
             <div>
               <div className="flex flex-col gap-3 pb-6 pt-[29px] text-color-text">

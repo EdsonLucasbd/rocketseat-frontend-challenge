@@ -42,9 +42,46 @@ module.exports = {
       },
       fontFamily: {
         saira: ['var(--font-saira)', ...fontFamily.sans],
-        'abril': ['var(--font-abril_Fatface)', ...fontFamily.sans]
+        k2d: ['var(--font-k2d)', ...fontFamily.sans]
+      },
+      animation: {
+        "fade-in-bottom": "fade-in-bottom 0.7s cubic-bezier(0.390, 0.575, 0.565, 1.000)",
+        "fade-in-left": "fade-in-left 1.1s cubic-bezier(0.390, 0.575, 0.565, 1.000)",
+        "fade-in-right": "fade-in-right 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000)"
+      },
+      keyframes: {
+      "fade-in-bottom": {
+        "0%": {
+          transform: "translateY(50px)",
+          opacity: "0"
+        },
+        to: {
+          transform: "translateY(0)",
+          opacity: "1"
+        }
+      },
+      "fade-in-left": {
+        "0%": {
+          transform: "translateX(-50px)",
+          opacity: "0"
+        },
+        to: {
+          transform: "translateX(0)",
+          opacity: "1"
+        }
+      },
+      "fade-in-right": {
+        "0%": {
+            transform: "translateX(50px)",
+            opacity: "0"
+        },
+        to: {
+            transform: "translateX(0)",
+            opacity: "1"
+        }
       },
     },
   },
   plugins: [],
+}
 }

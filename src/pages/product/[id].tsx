@@ -56,11 +56,13 @@ export default function Product({ product }: InferGetServerSidePropsType<typeof 
               alt={`Foto do produto ${product?.name}`}
               width={640}
               height={580}
-              className="flex flex-1 w-full max-w-[640px] h-full max-h-[580px] rounded"
+              className="flex flex-1 w-full max-w-[640px] h-full max-h-[580px] 
+              rounded animate-fade-in-left"
               onLoadingComplete={() => setIsLoading(false)}
             />
 
-            {isLoading && <SkeletonLoader className="absolute left-0 w-full max-w-[640px] h-[280px] max-h-[580px]" />}
+            {isLoading && <SkeletonLoader className="absolute left-0 w-full 
+              max-w-[640px] h-[280px] md:h-[580px] animate-fade-in-left" />}
 
             <div className="flex flex-col gap-2 mt-8 md:mt-0 md:ml-8 max-w-[448px]">
               <p className="mb-3 text-base text-[#41414D]">{translatedCategoryName}</p>
