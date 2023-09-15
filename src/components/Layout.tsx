@@ -32,7 +32,7 @@ const Header = ({ children }: { children: React.ReactNode }) => {
             width={188}
             height={163}
             alt=''
-            className=''
+            className='w-40'
           />
           <p className={`${k2dFont} text-3xl text-brand-blue hidden md:flex`}>Store</p>
         </Link>
