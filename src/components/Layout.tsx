@@ -24,17 +24,18 @@ const Header = ({ children }: { children: React.ReactNode }) => {
         <Link
           href={'/'}
           aria-label='voltar para a página inicial'
-          className={`${(router.asPath === '/' || router.asPath === '/?page=0') ? 'pointer-events-none' : ''} flex space-x-2 items-center`}
+          className={`${(router.asPath === '/' || router.asPath === '/?page=0') ? 'pointer-events-none' : ''} flex 
+          md:space-x-2 items-center`}
         >
           <Image
-            src='/logo.png'
+            src='/Logo.png'
             aria-hidden
             width={188}
             height={163}
             alt=''
-            className='w-40'
+            className='w-10 md:w-16'
           />
-          <p className={`${k2dFont} text-3xl text-brand-blue hidden md:flex`}>Store</p>
+          <p className={`${k2dFont} text-xs font-semibold md:font-normal md:text-3xl text-color-title md:flex`}>Store</p>
         </Link>
         <div className='flex flex-row gap-6'>
           <ItemSearchForm />

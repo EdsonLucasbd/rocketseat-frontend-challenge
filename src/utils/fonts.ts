@@ -15,7 +15,7 @@ const saira_stencil = Saira_Stencil_One({
 })
 
 const k2d = K2D({
-  weight: ['400'],
+  weight: ['400', '600'],
   subsets: ['latin'],
   variable: '--font-k2d',
   display: 'swap'
