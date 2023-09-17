@@ -29,7 +29,7 @@ export const CheckoutPanel = () => {
   return (
     <div className="flex flex-col md:flex-row gap-4">
       <div className='flex flex-col space-y-0 w-full md:w-2/5 px-5 py-7 md:px-11 
-        animate-fade-in-left md:py-9 bg-background rounded-lg'>
+        animate-fade-in-left md:py-9 bg-background rounded-lg shadow-md'>
         <BreadCrumbs infoIsFilled={showPayments} setInfoIsFilled={setShowPayments} />
         <div className='flex flex-col justify-between'>
           {showPayments ? (
@@ -41,7 +41,7 @@ export const CheckoutPanel = () => {
       </div>
       <aside className="flex flex-col w-full px-11 py-9 mt-5 md:mt-0
         bg-shapes-02 rounded-lg divide-y divide-dashed divide-zinc-400
-        animate-fade-in-right">
+        animate-fade-in-right shadow-md">
         {items?.map(item => (
           <div key={item.id} className="flex flex-row gap-4 py-5 first:pt-0 last:pb-0">
             <div className="relative ">

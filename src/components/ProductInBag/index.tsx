@@ -19,7 +19,9 @@ export const ProductInBag = ({ id, image, title, description, value, quantity, d
 
   return (
     <div className="flex flex-col md:flex-row w-full h-auto md:h-[13.1875rem] 
-      max-w-[46rem] shadow-md animate-fade-in-left">
+      max-w-[46rem] shadow-md animate-fade-in-left bg-background 
+      rounded-bl-none rounded-tl-lg rounded-tr-lg md:rounded-bl-lg 
+      md:rounded-tr-none">
       <Image
         src={image}
         alt=''
@@ -29,13 +31,13 @@ export const ProductInBag = ({ id, image, title, description, value, quantity, d
         className="w-auto h-auto md:w-64 md:h-[211px] rounded-bl-none rounded-tl-lg
           rounded-tr-lg md:rounded-bl-lg md:rounded-tr-none object-cover"
       />
-      <div className="bg-background rounded-r-lg w-full pl-[32px] pr-4 pb-4 md:pb-0 pt-4">
+      <div className="rounded-r-lg w-full pl-[32px] pr-4 pb-4 md:pb-0 pt-4">
         <span className="relative flex flex-row items-center pb-3 md:text-xl text-color-text">
           {title}
           <button className="absolute hover:bg-color-complement/20 rounded-full 
             right-0 p-1 md:p-2">
             <Trash
-              className="w-4 h-4 md:w-6 md:h-6 text-others-delete"
+              className="w-5 h-5 md:w-6 md:h-6 text-others-delete"
               onClick={() => deleteItem(id)}
             />
           </button>

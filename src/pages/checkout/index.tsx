@@ -7,7 +7,8 @@ export default function Checkout() {
       <Head>
         <title>E.L store | Checkout</title>
       </Head>
-      <div className="h-full flex flex-col-reverse md:flex-col py-10 md:py-20">
+      <div className="h-screen md:h-full flex flex-col-reverse md:flex-col py-10
+        md:py-20 justify-center my-[110%] md:my-0">
         <CheckoutPanel />
         <p className='text-xs mt-4 text-red-600'>
           * Atenção! Este é um site fictício, as formas de pagamento presentes são
