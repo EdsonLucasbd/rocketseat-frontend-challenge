@@ -43,7 +43,8 @@ export default function Product({ product }: InferGetServerSidePropsType<typeof 
         <button
           onClick={() => router.back()}
           className="flex items-center w-[85px] gap-2 font-medium text-color-text 
-        text-sm mt-[25px] mb-[22px] hover:ring-2 hover:ring-color-text hover:rounded-full p-1"
+        text-sm mb-[22px] hover:ring-2 hover:ring-color-text hover:rounded-full p-1
+        dark:text-dark-300 dark:hover:ring-dark-300"
         >
           <ArrowCircleLeft className="w-6 h-6" />
           Voltar

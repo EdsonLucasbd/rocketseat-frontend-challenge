@@ -56,7 +56,7 @@ export default function ShoppingCart() {
         <button
           onClick={() => router.back()}
           className="flex items-center w-[85px] gap-2 font-medium text-color-text 
-        text-sm mt-[25px] mb-[22px] hover:ring-2 hover:ring-color-text hover:rounded-full p-1"
+        text-sm mb-[22px] hover:ring-2 hover:ring-color-text hover:rounded-full p-1"
         >
           <ArrowCircleLeft className="w-6 h-6" />
           Voltar

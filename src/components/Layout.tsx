@@ -20,7 +20,7 @@ const Header = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className='flex flex-col'>
       <header className='flex items-center justify-between w-full h-20
-      bg-shapes-01 px-7 md:px-40'>
+      bg-shapes-01 dark:bg-dark-700 px-7 md:px-40'>
         <Link
           href={'/'}
           aria-label='voltar para a página inicial'
@@ -35,14 +35,15 @@ const Header = ({ children }: { children: React.ReactNode }) => {
             alt=''
             className='w-10 md:w-16'
           />
-          <p className={`${k2dFont} text-xs font-semibold md:font-normal md:text-3xl text-color-title md:flex`}>Store</p>
+          <p className={`${k2dFont} text-xs font-semibold md:font-normal md:text-3xl
+           text-color-title dark:text-color-complement md:flex`}>Store</p>
         </Link>
         <div className='flex flex-row gap-6'>
           <ItemSearchForm />
           <span className='relative inline-flex'>
             <button>
               <ShoppingBagOpen
-                className='w-6 h-6 text-color-text'
+                className='w-6 h-6 text-color-text dark:text-dark-200'
                 alt='buscar'
                 onClick={() => router.push('/shoppingCart')}
               />
@@ -52,7 +53,7 @@ const Header = ({ children }: { children: React.ReactNode }) => {
         </div>
       </header>
       <main className={`${saira} font-saira w-full h-screen md:h-full bg-page-background 
-        px-7 md:px-40 pb-[3.75rem] overflow-x-hidden`}>
+        dark:bg-dark-800 px-7 md:px-40 pb-[3.75rem] pt-10 overflow-x-hidden`}>
         {children}
       </main>
     </div>
