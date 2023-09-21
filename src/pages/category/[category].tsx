@@ -1,4 +1,5 @@
 import { CategoryNav } from "@/components/CategoryNavbar";
+import { NavBarMenu } from "@/components/NavBarMenu";
 import { PageNavigationButton } from "@/components/PageNavigationButton";
 import { ProductLayout } from "@/components/ProductLayout";
 import { ProductSkeletonLoader } from "@/components/ProductSkeletonLoader";
@@ -23,7 +24,8 @@ export default function Category({ products, pageInfo, totalItems }: InferGetSer
         <title>E.L store | {router.query.category === 't-shirts' ? 'camisetas' : 'canecas'}</title>
       </Head>
       <div className='flex flex-col'>
-        <CategoryNav />
+        {/* <CategoryNav /> */}
+        <NavBarMenu />
 
         <PageNavigationButton
           array={numberButtonsArray}

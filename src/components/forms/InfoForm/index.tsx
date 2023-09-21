@@ -111,20 +111,22 @@ export const PersonalInfoForm = ({ onSubmit }: PersonalInfoFormProps) => {
 
   useEffect(() => {
     getAddressInfoFromLocalStorage()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
     fetchCompletAddress()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [zipCode])
 
   return (
     <form className='flex flex-col gap-y-6' onSubmit={handleSubmit(continueToPayment)}>
       <fieldset className='flex flex-col gap-1'>
-        <label className='text-color-title font-semibold' htmlFor="contact">Contato</label>
+        <label className='text-color-title font-semibold dark:text-dark-200' htmlFor="contact">Contato</label>
         <input
-          className='w-full md:w-[375px] h-12 rounded-md p-3 bg-page-background/50 border 
+          className='w-full md:w-[375px] h-12 rounded-md p-3 bg-page-background/50 dark:bg-dark-900 border 
           border-color-complement outline-none focus:border-brand-orange
-          text-color-text'
+          text-color-text dark:text-dark-300 dark:focus:border-dark-100 dark:border-dark-300'
           type="text"
           id="contact"
           {...register('mail')}
@@ -133,28 +135,28 @@ export const PersonalInfoForm = ({ onSubmit }: PersonalInfoFormProps) => {
           autoFocus
         />
         {errors.mail &&
-          <span className='text-sm text-others-delete font-light'>
+          <span className='text-sm text-others-delete dark:text-others-delete/75 font-light'>
             {errors.mail.message}
           </span>
         }
       </fieldset>
       <fieldset className='flex flex-col gap-1'>
-        <label className='text-color-title font-semibold' htmlFor="name">Nome</label>
+        <label className='text-color-title dark:text-dark-200 font-semibold' htmlFor="name">Nome</label>
         <input
-          className='w-full md:w-[375px] h-12 rounded-md p-3 bg-page-background/50 border 
+          className='w-full md:w-[375px] h-12 rounded-md p-3 bg-page-background/50 dark:bg-dark-900 border 
           border-color-complement outline-none focus:border-brand-orange
-          text-color-text'
+          text-color-text dark:text-dark-300 dark:focus:border-dark-100 dark:border-dark-300'
           type="text"
           id="name"
           placeholder='Nome completo (opcional)'
         />
       </fieldset>
       <fieldset className='flex flex-col gap-1'>
-        <label className='text-color-title font-semibold' htmlFor="address">Endereço para envio</label>
+        <label className='text-color-title dark:text-dark-200 font-semibold' htmlFor="address">Endereço para envio</label>
         <input
-          className='w-full md:w-[375px] h-12 rounded-md p-3 bg-page-background/50 border 
+          className='w-full md:w-[375px] h-12 rounded-md p-3 bg-page-background/50 dark:bg-dark-900 border 
           border-color-complement outline-none focus:border-brand-orange
-          text-color-text'
+          text-color-text dark:text-dark-300 dark:focus:border-dark-100 dark:border-dark-300'
           type="text"
           id="address"
           {...register('address')}
@@ -162,18 +164,18 @@ export const PersonalInfoForm = ({ onSubmit }: PersonalInfoFormProps) => {
           onChange={validateForm}
         />
         {errors.address &&
-          <span className='text-sm text-others-delete font-light'>
+          <span className='text-sm text-others-delete dark:text-others-delete/75 font-light'>
             {errors.address.message}
           </span>
         }
       </fieldset>
       <div className="flex flex-row justify-between">
         <fieldset className='flex flex-col gap-1'>
-          <label className='text-color-title font-semibold' htmlFor="neighborhood">Bairro</label>
+          <label className='text-color-title dark:text-dark-200 font-semibold' htmlFor="neighborhood">Bairro</label>
           <input
-            className='w-4/5 md:w-full h-12 rounded-md p-3 bg-page-background/50 border 
+            className='w-4/5 md:w-full h-12 rounded-md p-3 bg-page-background/50 dark:bg-dark-900 border 
           border-color-complement outline-none focus:border-brand-orange
-          text-color-text'
+          text-color-text dark:text-dark-300 dark:focus:border-dark-100 dark:border-dark-300'
             type="text"
             id="neighborhood"
             {...register('neighborhood')}
@@ -181,17 +183,17 @@ export const PersonalInfoForm = ({ onSubmit }: PersonalInfoFormProps) => {
             onChange={validateForm}
           />
           {errors.neighborhood &&
-            <span className='text-sm text-others-delete font-light'>
+            <span className='text-sm text-others-delete dark:text-others-delete/75 font-light'>
               {errors.neighborhood.message}
             </span>
           }
         </fieldset>
         <fieldset className='flex flex-col gap-1 w-[100px]'>
-          <label className='text-color-title font-semibold' htmlFor="number">Número</label>
+          <label className='text-color-title dark:text-dark-200 font-semibold' htmlFor="number">Número</label>
           <input
-            className='w-full h-12 rounded-md p-3 bg-page-background/50 border 
+            className='w-full h-12 rounded-md p-3 bg-page-background/50 dark:bg-dark-900 border 
           border-color-complement outline-none focus:border-brand-orange
-          text-color-text'
+          text-color-text dark:text-dark-300 dark:focus:border-dark-100 dark:border-dark-300'
             type="text"
             id="number"
             maxLength={5}
@@ -200,29 +202,29 @@ export const PersonalInfoForm = ({ onSubmit }: PersonalInfoFormProps) => {
             onChange={validateForm}
           />
           {errors.houseNumber &&
-            <span className='text-sm break-words text-others-delete font-light'>
+            <span className='text-sm break-words text-others-delete dark:text-others-delete/75 font-light'>
               {errors.houseNumber.message}
             </span>
           }
         </fieldset>
       </div>
       <fieldset className='flex flex-col gap-1'>
-        <label className='text-color-title font-semibold' htmlFor="complement">Complemento</label>
+        <label className='text-color-title dark:text-dark-200 font-semibold' htmlFor="complement">Complemento</label>
         <input
-          className='w-full md:w-[375px] h-12 rounded-md p-3 bg-page-background/50 border 
+          className='w-full md:w-[375px] h-12 rounded-md p-3 bg-page-background/50 dark:bg-dark-900 border 
           border-color-complement outline-none focus:border-brand-orange
-          text-color-text'
+          text-color-text dark:text-dark-300 dark:focus:border-dark-100 dark:border-dark-300'
           type="text"
           id="complement"
           placeholder='Complemento (opcional)'
         />
       </fieldset>
       <fieldset className='flex flex-col gap-1'>
-        <label className='text-color-title font-semibold' htmlFor="city">Cidade</label>
+        <label className='text-color-title dark:text-dark-200 font-semibold' htmlFor="city">Cidade</label>
         <input
-          className='w-full md:w-[375px] h-12 rounded-md p-3 bg-page-background/50 border 
+          className='w-full md:w-[375px] h-12 rounded-md p-3 bg-page-background/50 dark:bg-dark-900 border 
           border-color-complement outline-none focus:border-brand-orange
-          text-color-text'
+          text-color-text dark:text-dark-300 dark:focus:border-dark-100 dark:border-dark-300'
           type="text"
           id="city"
           {...register('city')}
@@ -230,19 +232,19 @@ export const PersonalInfoForm = ({ onSubmit }: PersonalInfoFormProps) => {
           onChange={validateForm}
         />
         {errors.city &&
-          <span className='text-sm text-others-delete font-light'>
+          <span className='text-sm text-others-delete dark:text-others-delete/75 font-light'>
             {errors.city.message}
           </span>
         }
       </fieldset>
       <div className="flex flex-row justify-between">
         <fieldset className='flex flex-col gap-1'>
-          <label className='text-color-title font-semibold' htmlFor="state">Estado</label>
+          <label className='text-color-title dark:text-dark-200 font-semibold' htmlFor="state">Estado</label>
           <input
-            className='w-4/5 md:w-full h-12 rounded-md p-3 bg-page-background/50 
+            className='w-4/5 md:w-full h-12 rounded-md p-3 bg-page-background/50 dark:bg-dark-900 
             disabled:bg-slate-200 border 
           border-color-complement outline-none focus:border-brand-orange
-          text-color-text'
+          text-color-text dark:text-dark-300 dark:focus:border-dark-100 dark:border-dark-300 dark:disabled:bg-dark-400'
             type="text"
             id="state"
             {...register('state', {
@@ -254,11 +256,11 @@ export const PersonalInfoForm = ({ onSubmit }: PersonalInfoFormProps) => {
           />
         </fieldset>
         <fieldset className='flex flex-col gap-1 w-[130px]'>
-          <label className='text-color-title font-semibold' htmlFor="zip-code">CEP</label>
+          <label className='text-color-title dark:text-dark-200 font-semibold' htmlFor="zip-code">CEP</label>
           <input
-            className='w-full h-12 rounded-md p-3 bg-page-background/50 border 
+            className='w-full h-12 rounded-md p-3 bg-page-background/50 dark:bg-dark-900 border 
           border-color-complement outline-none focus:border-brand-orange
-          text-color-text placeholder:text-[.9375rem]'
+          text-color-text dark:text-dark-300 dark:focus:border-dark-100 dark:border-dark-300 placeholder:text-[.9375rem]'
             type="text"
             id="zip-code"
             maxLength={9}
@@ -267,7 +269,7 @@ export const PersonalInfoForm = ({ onSubmit }: PersonalInfoFormProps) => {
             onChange={handleZipCodeChange}
           />
           {errors.zipCode &&
-            <span className='text-sm break-words text-others-delete font-light'>
+            <span className='text-sm break-words text-others-delete dark:text-others-delete/75 font-light'>
               {errors.zipCode.message}
             </span>
           }
@@ -277,7 +279,8 @@ export const PersonalInfoForm = ({ onSubmit }: PersonalInfoFormProps) => {
         type='submit'
         className="flex items-center justify-center gap-3 w-full h-11 
           rounded disabled:cursor-not-allowed disabled:bg-slate-400 
-           text-background bg-brand-blue hover:bg-brand-blue/90"
+           text-background bg-brand-blue hover:bg-brand-blue/90 dark:bg-dark-400 
+           dark:hover:bg-dark-800 dark:disabled:bg-dark-300"
         disabled={!isValid || isFilled}
       >
         Seguir para pagamento

@@ -21,12 +21,15 @@ export const RadioGroup = ({ label, id, ...rest }: RadioGroupProps) => {
           focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] 
           focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-brand-orange 
           checked:focus:before:scale-90 checked:focus:before:shadow-[0px_0px_0px_13px_#F25D27] 
-          checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] peer"
+          checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] peer
+          dark:border-dark-300 dark:checked:border-brand-orange/75 dark:checked:after:border-brand-orange/75
+          dark:checked:after:bg-brand-orange/75 dark:checked:focus:border-brand-orange/75"
         type="radio"
         name="payment"
         {...rest}
         id={id} />
-      <label htmlFor={id} className="text-sm md:text-base text-color-text cursor-pointer peer-checked:text-brand-orange">{label}</label>
+      <label htmlFor={id} className="text-sm md:text-base text-color-text cursor-pointer 
+      peer-checked:text-brand-orange dark:text-dark-300 dark:peer-checked:text-brand-orange/75">{label}</label>
     </div>
   )
 }

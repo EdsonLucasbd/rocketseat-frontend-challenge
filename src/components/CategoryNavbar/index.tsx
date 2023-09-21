@@ -103,8 +103,8 @@ export const CategoryNav = () => {
                       <SortLink
                         sortField={link.sortField}
                         title={link.label}
-                        className={`${active ? 'bg-color-title text-white' : 'bg-white dark:bg-dark-700 text-color-text dark:text-dark-300'
-                          } ${(router.query.sortField === link.sortField) ? 'ring-1 ring-color-title' : ''} group 
+                        className={`${active ? 'bg-color-title text-white dark:bg-dark-900 dark:text-dark-200' : 'bg-white dark:bg-dark-700 text-color-text dark:text-dark-300'
+                          } ${(router.query.sortField === link.sortField) ? 'ring-1 ring-color-title dark:ring-dark-800' : ''} group 
                           hover:bg-color-title dark:hover:bg-dark-200/40 hover:text-white dark:hover:text-dark-900 flex w-full items-center rounded-md px-2 py-2 my-2 text-sm`}
                       />
                     )}

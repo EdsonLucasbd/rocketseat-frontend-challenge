@@ -67,11 +67,12 @@ export const CardForm = () => {
         className='flex flex-col gap-y-6'
       >
         <fieldset className='flex flex-col gap-1'>
-          <label className='text-color-title font-semibold' htmlFor="cardNumber">Número do cartão</label>
+          <label className='text-color-title dark:text-dark-200 font-semibold' htmlFor="cardNumber">Número do cartão</label>
           <input
-            className='w-full md:w-[23.4375rem] h-12 rounded-md p-3 bg-page-background/50 border 
+            className='w-full md:w-[23.4375rem] h-12 rounded-md p-3 bg-page-background/50
+            dark:bg-dark-900 border 
           border-color-complement outline-none focus:border-brand-orange
-          text-color-text'
+          text-color-text dark:text-dark-300 dark:border-dark-300 dark:focus:border-dark-100'
             type="text"
             id="cardNumber"
             maxLength={19}
@@ -80,23 +81,24 @@ export const CardForm = () => {
             onChange={handleCardNumberChange}
           />
           {errors.cardNumber &&
-            <span className='text-sm text-others-delete font-light'>
+            <span className='text-sm text-others-delete dark:text-others-delete/75 font-light'>
               {errors.cardNumber.message}
             </span>
           }
         </fieldset>
         <fieldset className='flex flex-col gap-1'>
-          <label className='text-color-title font-semibold' htmlFor="name">Nome do Titular</label>
+          <label className='text-color-title dark:text-dark-200 font-semibold' htmlFor="name">Nome do Titular</label>
           <input
-            className='w-full md:w-[23.4375rem] h-12 rounded-md p-3 bg-page-background/50 border border-color-complement 
-        outline-none focus:border-brand-orange text-color-text'
+            className='w-full md:w-[23.4375rem] h-12 rounded-md p-3 bg-page-background/50
+            dark:bg-dark-900 border border-color-complement 
+        outline-none focus:border-brand-orange text-color-text dark:text-dark-300 dark:border-dark-300 dark:focus:border-dark-100'
             type="text"
             id="name"
             {...register('name')}
             placeholder='Nome como está no cartão'
           />
           {errors.name &&
-            <span className='text-sm text-others-delete font-light'>
+            <span className='text-sm text-others-delete dark:text-others-delete/75 font-light'>
               {errors.name.message}
             </span>
           }
@@ -105,10 +107,11 @@ export const CardForm = () => {
 
         <div className="flex flex-row gap-4">
           <fieldset className='flex flex-col gap-1'>
-            <label className='text-color-title font-semibold' htmlFor="validity">Validade</label>
+            <label className='text-color-title dark:text-dark-200 font-semibold' htmlFor="validity">Validade</label>
             <input
-              className='w-full md:w-[13.125rem] h-12 rounded-md p-3 bg-page-background/50 border border-color-complement 
-          outline-none focus:border-brand-orange text-color-text'
+              className='w-full md:w-[13.125rem] h-12 rounded-md p-3 bg-page-background/50
+              dark:bg-dark-900 border border-color-complement 
+          outline-none focus:border-brand-orange text-color-text dark:text-dark-300 dark:border-dark-300 dark:focus:border-dark-100'
               type="text"
               id="validity"
               maxLength={5}
@@ -117,18 +120,19 @@ export const CardForm = () => {
               onChange={handleValidityChange}
             />
             {errors.validity &&
-              <span className='text-sm text-others-delete font-light'>
+              <span className='text-sm text-others-delete dark:text-others-delete/75 font-light'>
                 {errors.validity.message}
               </span>
             }
           </fieldset>
 
           <fieldset className='flex flex-col gap-1'>
-            <label className='text-color-title font-semibold' htmlFor="cvv">CVV</label>
+            <label className='text-color-title dark:text-dark-200 font-semibold' htmlFor="cvv">CVV</label>
             <input
-              className='w-full md:w-[9.375rem] h-12 rounded-md p-3 bg-page-background/50 
+              className='w-full md:w-[9.375rem] h-12 rounded-md p-3 bg-page-background/50
+              dark:bg-dark-900 
                 border border-color-complement outline-none 
-                focus:border-brand-orange text-color-text'
+                focus:border-brand-orange text-color-text dark:text-dark-300 dark:border-dark-300 dark:focus:border-dark-100'
               type="text"
               id="cvv"
               maxLength={3}
@@ -138,7 +142,7 @@ export const CardForm = () => {
               placeholder="***"
             />
             {errors.cvv &&
-              <span className='text-sm text-others-delete font-light'>
+              <span className='text-sm text-others-delete dark:text-others-delete/75 font-light'>
                 {errors.cvv.message}
               </span>
             }
@@ -147,7 +151,7 @@ export const CardForm = () => {
         <button
           type='submit'
           className="flex items-center justify-center gap-3 w-full h-11 
-          rounded text-background bg-brand-blue hover:bg-brand-blue/90"
+          rounded text-background bg-brand-blue hover:bg-brand-blue/90 dark:bg-dark-400 dark:hover:bg-dark-800"
         >
           Finalizar compra
         </button>
@@ -168,7 +172,7 @@ export const CardForm = () => {
             height={15}
             alt="Ícone de um escudo, representando a segurança dos dados"
           />
-          <span className="text-color-text">Seus dados estão seguros</span>
+          <span className="text-color-text dark:text-dark-300">Seus dados estão seguros</span>
         </div>
       </div>
     </div>

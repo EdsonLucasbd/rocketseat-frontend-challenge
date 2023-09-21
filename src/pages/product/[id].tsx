@@ -66,18 +66,18 @@ export default function Product({ product }: InferGetServerSidePropsType<typeof 
               max-w-[640px] h-[280px] md:h-[580px] animate-fade-in-left" />}
 
             <div className="flex flex-col gap-2 mt-8 md:mt-0 md:ml-8 max-w-[448px]">
-              <p className="mb-3 text-base text-[#41414D]">{translatedCategoryName}</p>
-              <p className="mb-1 font-light text-[32px] text-[#41414D]">{product.name}</p>
-              <b className="mb-3 md:mb-6 text-xl">R$ {price}</b>
-              <p className="mb-11 md:mb-[58px] text-xs text-[#41414D]">*Frete de R$40,00 para todo o Brasil. Grátis para compras acima de R$900,00.</p>
+              <p className="mb-3 text-base text-[#41414D] dark:text-dark-200">{translatedCategoryName}</p>
+              <p className="mb-1 font-light text-[32px] text-[#41414D] dark:text-dark-200">{product.name}</p>
+              <b className="mb-3 md:mb-6 text-xl dark:text-dark-100">R$ {price}</b>
+              <p className="mb-11 md:mb-[58px] text-xs text-[#41414D] dark:text-dark-200">*Frete de R$40,00 para todo o Brasil. Grátis para compras acima de R$900,00.</p>
               <div className="flex flex-col gap-2 mb-8 md:mb-auto">
-                <p className="font-medium text-color-text">Descrição</p>
-                <p className="text-sm text-[#41414D]">{product.description}</p>
+                <p className="font-medium text-color-text dark:text-dark-200">Descrição</p>
+                <p className="text-sm text-[#41414D] dark:text-dark-200">{product.description}</p>
               </div>
               <button
                 onClick={() => setProductInBag({ name: product.name, id: product.id, price, description: product.description, image_url: product.images[0].url, quantity: 1 })}
                 className="flex items-center justify-center gap-3 w-full h-11 rounded text-background bg-brand-blue
-              hover:bg-brand-blue/90">
+              hover:bg-brand-blue/90 dark:bg-dark-400 dark:hover:bg-dark-700 dark:text-dark-200">
                 <ShoppingBagOpen className="w-6 h-6" />
                 ADICIONAR AO CARRINHO
               </button>
