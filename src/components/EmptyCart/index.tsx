@@ -12,9 +12,10 @@ export const EmptyCart = () => {
         alt=''
         className='opacity-50'
       />
-      <p className='font-semibold text-xl text-color-text'>Seu carrinho está vazio</p>
-      <Link href='/' className="flex items-center justify-center gap-3 w-full md:w-1/2 h-11 rounded text-background bg-brand-blue
-      hover:bg-brand-blue/90"
+      <p className='font-semibold text-xl text-color-text dark:text-dark-300'>Seu carrinho está vazio</p>
+      <Link href='/' className="flex items-center justify-center gap-3 w-full md:w-1/2 h-11 
+      rounded text-background bg-brand-blue
+      hover:bg-brand-blue/90 dark:bg-dark-400 dark:hover:bg-dark-700 dark:text-dark-200"
       >
         <ShoppingBagOpen className="w-6 h-6" />
         Continuar comprando

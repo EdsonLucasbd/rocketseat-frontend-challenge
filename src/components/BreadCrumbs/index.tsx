@@ -18,24 +18,24 @@ export const BreadCrumbs = ({ infoIsFilled, setInfoIsFilled }: BreadCrumbsProps)
       <ol className='flex flex-row flex-wrap  items-center md:justify-center gap-1 md:gap-3 mb-6 
         md:mb-11 '>
         <li className='flex flex-row gap-1 items-center'>
-          <Link href='/shoppingCart' className='text-brand-orange text-sm md:text-base'>
+          <Link href='/shoppingCart' className='text-brand-orange text-sm md:text-base dark:text-brand-orange/50'>
             Carrinho
           </Link>
-          <CaretRight />
+          <CaretRight className='dark:text-dark-200' />
         </li>
         <li className='flex flex-row gap-1 items-center'>
           <Link
             href=''
-            className={`${infoIsFilled ? ' text-brand-orange text-sm md:text-base'
-              : 'text-color-text font-semibold'} transition-all ease-linear duration-200`}
+            className={`${infoIsFilled ? ' text-brand-orange text-sm md:text-base dark:text-brand-orange/50'
+              : 'text-color-text font-semibold dark:text-dark-200'} transition-all ease-linear duration-200`}
             onClick={handleChangeFilledInfo}>
             Endereço
           </Link>
-          <CaretRight />
+          <CaretRight className='dark:text-dark-200' />
         </li>
         <li className='flex flex-row gap-1 items-center'>
-          <span className={`${infoIsFilled ? 'text-color-text font-semibold'
-            : ' text-color-text'} transition-all ease-linear duration-200
+          <span className={`${infoIsFilled ? 'text-color-text font-semibold dark:text-dark-200'
+            : ' text-color-text dark:text-dark-300'} transition-all ease-linear duration-200
         text-sm md:text-base`}>
             Pagamento
           </span>

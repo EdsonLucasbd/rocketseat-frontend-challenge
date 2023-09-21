@@ -8,6 +8,7 @@ import { SearchProducts } from "@/graphql/queries";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
 import { SmileySad } from '@phosphor-icons/react';
+import { NavBarMenu } from '@/components/NavBarMenu';
 
 export default function Search({ products, pageInfo, totalItems }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const TOTAL_PRODUCTS = products.length > 0 ? totalItems : 0
@@ -23,7 +24,8 @@ export default function Search({ products, pageInfo, totalItems }: InferGetServe
         <title>E.L store | {router.query.search}</title>
       </Head>
       <div className='flex flex-col'>
-        <CategoryNav />
+        {/* <CategoryNav /> */}
+        <NavBarMenu />
 
         <PageNavigationButton
           array={numberButtonsArray}

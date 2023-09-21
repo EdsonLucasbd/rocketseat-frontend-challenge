@@ -21,7 +21,7 @@ export const ProductInBag = ({ id, image, title, description, value, quantity, d
     <div className="flex flex-col md:flex-row w-full h-auto md:h-[13.1875rem] 
       max-w-[46rem] shadow-md animate-fade-in-left bg-background 
       rounded-bl-none rounded-tl-lg rounded-tr-lg md:rounded-bl-lg 
-      md:rounded-tr-none">
+      md:rounded-tr-none dark:bg-dark-700">
       <Image
         src={image}
         alt=''
@@ -32,18 +32,19 @@ export const ProductInBag = ({ id, image, title, description, value, quantity, d
           rounded-tr-lg md:rounded-bl-lg md:rounded-tr-none object-cover"
       />
       <div className="rounded-r-lg w-full pl-[32px] pr-4 pb-4 md:pb-0 pt-4">
-        <span className="relative flex flex-row items-center pb-3 md:text-xl text-color-text">
+        <span className="relative flex flex-row items-center pb-3 md:text-xl text-color-text 
+        dark:text-dark-200">
           {title}
-          <button className="absolute hover:bg-color-complement/20 rounded-full 
+          <button className="absolute hover:bg-color-complement/20 dark:hover:bg-dark-400 rounded-full 
             right-0 p-1 md:p-2">
             <Trash
-              className="w-5 h-5 md:w-6 md:h-6 text-others-delete"
+              className="w-5 h-5 md:w-6 md:h-6 text-others-delete dark:text-others-delete/50"
               onClick={() => deleteItem(id)}
             />
           </button>
         </span>
         <p className="pb-4 md:pb-[25px] h-16 md:h-auto text-ellipsis overflow-hidden 
-          text-xs text-color-text">{description}</p>
+          text-xs text-color-text dark:text-dark-300">{description}</p>
         <div className="flex flex-row w-full justify-between items-center pt-4">
           <select
             name="quantity"
@@ -52,13 +53,13 @@ export const ProductInBag = ({ id, image, title, description, value, quantity, d
             onChange={(event) => changeQuantity(event, id)}
             className="cursor-pointer hover:ring hover:ring-others-blue_low 
               w-[65px] h-10 px-1 md:px-3 text-color-text rounded-lg border 
-              bg-[#F3F5F6] border-[#A8A8B3]"
+              bg-[#F3F5F6] border-[#A8A8B3] dark:bg-dark-400 dark:text-dark-300 dark:hover:ring-dark-300"
           >
             {totalLimit.map((number) => (
               <option key={number} value={number}>{number}</option>
             ))}
           </select>
-          <b>R$ {value}</b>
+          <b className="dark:text-dark-200">R$ {value}</b>
         </div>
       </div>
     </div>

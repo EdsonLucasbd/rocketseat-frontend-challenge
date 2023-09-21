@@ -55,7 +55,7 @@ export const PageNavigationButton = ({ array, hasNext, hasPrevious }: PageNaviga
   }
 
   return (
-    <div className="flex items-center justify-end w-full gap-2 md:gap-[2px] pb-8 pt-6">
+    <div className="flex items-center justify-end w-full md:gap-[2px] pb-8 pt-6">
       {
         array.map((buttonNumber) => (
           <Link
@@ -64,10 +64,12 @@ export const PageNavigationButton = ({ array, hasNext, hasPrevious }: PageNaviga
             data-position={buttonNumber}
             href={checkQueryStrings(buttonNumber)}
             aria-label={`acessar a página ${buttonNumber + 1}`}
-            className={`flex items-center justify-center rounded-lg w-8 h-8 
+            className={`flex items-center justify-center rounded-lg w-8 h-8 mr-1 
                 data-[current=true]:bg-background data-[current=true]:text-others-orange_low 
                 data-[current=true]:ring-1 data-[current=true]:ring-others-orange_low
-                bg-[#E9E9F0] text-color-complement hover:bg-shapes-02`}
+                bg-[#E9E9F0] text-color-complement hover:bg-shapes-02 dark:bg-dark-400
+                dark:text-dark-300
+                dark:data-[current=true]:bg-dark-950 dark:data-[current=true]:ring-brand-orange/70`}
           >
             {buttonNumber + 1}
           </Link>
@@ -80,7 +82,8 @@ export const PageNavigationButton = ({ array, hasNext, hasPrevious }: PageNaviga
               items-center justify-center rounded-lg w-8 h-8 bg-[#E9E9F0] text-color-complement
             hover:bg-shapes-02 flex
             disabled:opacity-75 disabled:cursor-not-allowed 
-            disabled:hover:bg-[#E9E9F0] `}
+            disabled:hover:bg-[#E9E9F0] mr-1
+            dark:bg-dark-400 dark:disabled:bg-dark-400 dark:disabled:opacity-50`}
         onClick={goToPreviousPage}
         disabled={!hasPrevious}
       >
@@ -91,7 +94,8 @@ export const PageNavigationButton = ({ array, hasNext, hasPrevious }: PageNaviga
         className={`items-center justify-center rounded-lg w-8 h-8 
             bg-[#E9E9F0] text-color-complement hover:bg-shapes-02 
             flex disabled:opacity-75 disabled:cursor-not-allowed 
-            disabled:hover:bg-[#E9E9F0]`}
+            disabled:hover:bg-[#E9E9F0]
+            dark:bg-dark-400 dark:disabled:bg-dark-400 dark:disabled:opacity-50`}
         onClick={goToNextPage}
         disabled={!hasNext}
       >

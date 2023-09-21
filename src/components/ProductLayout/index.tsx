@@ -44,11 +44,11 @@ export const ProductLayout = ({ image, price, title, id }: ProductProps) => {
           aria-hidden
           onLoadingComplete={handleImageLoad}
         />
-        <div className="flex flex-col bg-white/40 h-[78px] py-2 px-3 gap-y-2 
+        <div className="flex flex-col bg-white/40 dark:bg-dark-700 h-[78px] py-2 px-3 gap-y-2 
         rounded-b-lg">
-          <p className={`${saira} font-saira text-color-text font-light text-xs md:text-base`}>{title}</p>
-          <hr className="bg-shapes-02" />
-          <p className={`${saira} font-saira text-[#09090A] font-semibold text-xs md:text-sm`}>R$ {productPrice}</p>
+          <p className={`${saira} font-saira text-color-text dark:text-dark-200 font-light text-xs md:text-base`}>{title}</p>
+          <hr className="bg-shapes-02 dark:bg-dark-400" />
+          <p className={`${saira} font-saira text-[#09090A] dark:text-dark-200 font-semibold text-xs md:text-sm`}>R$ {productPrice}</p>
         </div>
       </Link>
     </>
