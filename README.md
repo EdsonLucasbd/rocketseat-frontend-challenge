@@ -1,62 +1,60 @@
-![image](https://user-images.githubusercontent.com/40845824/121069742-3accdb00-c7a4-11eb-87d0-3dc47e433762.png)
-
+![Protótipo](https://media.graphassets.com/Yd63WmWxQAC1mJ1L31hh)
 
 # 🚀 Front end challenge
 
-Bem-vindo(a). Este é o desafio Front end!
+Desafio criado pela [Rocketseat](https://rocketseat.com.br/) que consiste em implementar um e-commerce para venda de canecas e camisetas.
 
-O objetivo deste desafio é avaliar suas habilidades de programação.
-Quando sua solução estiver pronta, basta responder o e-mail que recebeu com o link do seu repo aqui no Github!
-Em seguida, enviaremos o feedback e as instruções dos próximos passos!
+Você pode ver o resultado aqui: [E.L Store](https://el-store-edsonlucasbd.vercel.app/)
 
-Caso tenha alguma dúvida, nós estamos disponíveis no email *recrutamento@rocketseat.com.br*
-Bom desafio!
+# 🪄 funcionalidades:
 
-> ⚠️ **É importante que o seu repo esteja público, caso contrário não iremos conseguir avaliar sua resposta**
+- Catálogo de produtos com paginação
+- Filtragem de produtos por categoria
+- Busca por nome do produto
+- Adicionar e remover produtos do carrinho
+- Finalizar compra
+- Tema Dark
 
-# 🧠 Contexto
+## 🛠️ Tecnologias utilizadas
 
-![Protótipo](https://storage.googleapis.com/xesque-dev/challenge-images/prototipo.png?42)
+- Next.js
+- Typescript
+- Tailwind Css
+- GraphQL
+- Headless CMS
 
-O desafio será implementar um e-commerce para venda de canecas e camisetas que deverá ter as seguintes funcionalidades:
-- [x] Catálogo de produtos com paginação
-- [x] Filtragem produtos por categoria
-- [x] Busca por nome do produto
-- [x] Adicionar e remover produtos do carrinho
-- [x] Finalizar compra
+## 🆙 O Plus
 
-## 📋 Instruções
+- ✔️ Tema Dark
+- ✔️ Headless CMS
+- ✔️ Menu responsivo
+- ✔️ Checkout
+- ✔️ Responsividade
 
-Chegou a hora de colocar a mão na massa!
+## 📋 Instruções de instalação
 
-- Siga [esse protótipo](https://www.figma.com/file/rET9F2CeUEJdiVN7JRu993/E-commerce---capputeeno?node-id=680%3A6449)
-- Utilize Next.js e Typescript
-- Faça a estilização com styled-components
-- Utilize o local storage para gerenciar o carrinho
-- Por favor, inclua no README as instruções de instalação do projeto
-- Sinta-se livre para incluir quaisquer observações
-- Consuma nossa **API GraphQL** rodando o comando `yarn start` na pasta `api`
+### Pré-requisitos
 
-## ✔️ Critérios de Avaliação
+Para conseguir utilizar o projeto, você precisará instalar as seguintes ferramentas: [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/) e [Yarn](https://classic.yarnpkg.com/en/docs/install).
 
-Além dos requisitos levantados acima, iremos olhar para os seguintes critérios durante a correção do desafio:
+```bash
+# Clone este repositório
+$ git clone https://github.com/EdsonLucasbd/rocketseat-frontend-challenge.git
 
-- Gerenciamento de estado
-- Componentização
-- Responsividade
-- Preocupação com usabilidade
-- Preocupação com acessibilidade
-- Testes e2e
-- Padrões de código
-- Padrão de commits (_Conventional_)
+# Acesse a pasta do projeto no seu terminal
+$ cd rocketseat-frontend-challenge
 
-## 😎 Seria legal
-- Fazer deploy na vercel ou em outro local de sua preferência e disponibilizar um link de visualização, se necessário utilize esse servidor para a API GraphQL:  https://rocketseat-frontend-challenge.herokuapp.com/
-- Testes unitários
-- Utilização de cache do Next.js
+# Instale as dependências
+$ yarn
 
----
+# Execute a aplicação em modo de desenvolvimento
+$ yarn dev
 
-_O desafio acima foi cuidadosamente construído para propósitos de avaliação apenas. Já possuimos uma funcionalidade similar na nossa plataforma._
+# A aplicação abrirá na porta:3000
+```
 
-Made with 💜 at Rocketseat
+<p>Agora você pode acessar <code><a href="https://localhost:3000">localhost:3000</a></code> do seu navegador. <img width="25" src="https://emojis.slackmojis.com/emojis/images/1531849430/4246/blob-sunglasses.gif?1531849430" alt="Sunglasses emoji" /></p>
+
+##
+
+<p align="center">Feito com 💜 por Edson Lucas</p>
