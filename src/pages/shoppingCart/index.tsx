@@ -1,6 +1,6 @@
 import { ArrowCircleLeft } from "@phosphor-icons/react";
 import { useRouter } from "next/router";
-import { Suspense, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { IStoredItem } from "../product/[id]";
 import { ProductInBag } from "@/components/ProductInBag";
 import { CartContext } from "../../../context/CartContext";

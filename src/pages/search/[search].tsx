@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import { CategoryNav } from "@/components/CategoryNavbar";
 import { PageNavigationButton } from "@/components/PageNavigationButton";
 import { ProductLayout } from "@/components/ProductLayout";
 import { client } from "@/graphql/client";
@@ -24,7 +23,6 @@ export default function Search({ products, pageInfo, totalItems }: InferGetServe
         <title>E.L store | {router.query.search}</title>
       </Head>
       <div className='flex flex-col'>
-        {/* <CategoryNav /> */}
         <NavBarMenu />
 
         <PageNavigationButton

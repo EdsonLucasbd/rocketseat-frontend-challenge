@@ -142,13 +142,10 @@ export const NavBarMenu = () => {
               </Transition>
             </Popover>
             <ThemeButton />
-            {/* <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            </div> */}
           </div>
-
         </Popover.Group>
-
       </nav>
+
       <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
         <div className="fixed inset-0 z-10" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto 

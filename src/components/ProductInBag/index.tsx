@@ -1,7 +1,5 @@
 import { Trash } from "@phosphor-icons/react"
 import Image from "next/image"
-import { useContext } from "react"
-import { CartContext } from "../../../context/CartContext"
 
 interface ProductInBagProps {
   id: string
@@ -38,7 +36,7 @@ export const ProductInBag = ({ id, image, title, description, value, quantity, d
           <button className="absolute hover:bg-color-complement/20 dark:hover:bg-dark-400 rounded-full 
             right-0 p-1 md:p-2">
             <Trash
-              className="w-5 h-5 md:w-6 md:h-6 text-others-delete dark:text-others-delete/50"
+              className="w-5 h-5 md:w-6 md:h-6 text-others-delete dark:text-color-text"
               onClick={() => deleteItem(id)}
             />
           </button>

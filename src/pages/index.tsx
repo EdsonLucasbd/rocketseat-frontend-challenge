@@ -1,4 +1,3 @@
-import { CategoryNav } from "@/components/CategoryNavbar";
 import { NavBarMenu } from "@/components/NavBarMenu";
 import { PageNavigationButton } from "@/components/PageNavigationButton";
 import { ProductLayout } from "@/components/ProductLayout";
@@ -23,7 +22,6 @@ export default function Home({ products, totalItems, pageInfo }: InferGetServerS
         <title>E.L store</title>
       </Head>
       <div className='flex flex-col w-full'>
-        {/* <CategoryNav /> */}
         <NavBarMenu />
 
         <PageNavigationButton
